@@ -4,6 +4,7 @@ import { User } from '../../entities/User';
 
 
 export const SIGNUP = 'SIGNUP';
+export const LOGIN = 'LOGIN';
 export const REHYDRATE_USER = 'REHYDRATE_USER';
 export const LOGOUT = 'LOGOUT';
 
@@ -43,7 +44,7 @@ export const signup = (email: string, password: string) => {
             //dispatch({type: SIGNUP_FAILED, payload: 'something'})
         } else {
             const data: FirebaseSignupSuccess = await response.json(); // json to javascript
-            console.log("data from server", data);
+          /*   console.log("data from server", data); */
 
             const user = new User(data.email, '', '');
 
@@ -54,3 +55,36 @@ export const signup = (email: string, password: string) => {
         }
     };
 };
+
+export const login = (email: string, password: string) => {
+    return async (dispatch: any, getState: any) => {
+        const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBs9GdYK7ZmIGi5EYOoKk3eKyTOU5XU2A4', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                email: email,
+                password: password,
+                returnSecureToken: true
+            })
+        });
+
+        if (!response.ok) {
+            //There was a problem..
+            //dispatch({type: SIGNUP_FAILED, payload: 'something'})
+        } else {
+            const data: FirebaseSignupSuccess = await response.json(); // json to javascript
+           /*  console.log("data from server", data); */
+
+            const user = new User(data.email, '', '');
+
+            await SecureStore.setItemAsync('idToken', data.idToken);
+            await SecureStore.setItemAsync('user', JSON.stringify(user)); // convert user js-obj. to json
+
+            dispatch({ type: LOGIN, payload: { user, idToken: data.idToken } })
+        }
+    };
+};
+
+
