@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-
-
 const Input = ({ title, inputValue, error, setText }:
     { title: string, inputValue: string, error: string, setText: (i: string) => void }) => {
 
