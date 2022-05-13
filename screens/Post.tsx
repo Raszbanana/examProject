@@ -1,17 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StackParamList } from "../typings/navigations";
+import { StyleSheet, Text, View } from 'react-native';
 
-
-const Feed = ({ id, title, text }:
+const Post = ({ id, title, text }:
     {id: number,  title: string, text: string}) => {
-
     return (
         <View style={styles.container}>
-            <Text style={styles.id}>{id}</Text>
             <Text>{title}</Text>
+            <Text style={styles.id}>{id}</Text>
             <Text>{text}</Text>
         </View>
     );
@@ -27,12 +22,10 @@ const styles = StyleSheet.create({
         height: 100,
         marginTop:10,
         marginBottom:10,
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     id: {
      display: 'none',
     },
 })
 
-export default Feed;
+export default Post;

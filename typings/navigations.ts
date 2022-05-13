@@ -6,4 +6,7 @@ export type StackParamList = {
     Login: undefined;
     Profile: undefined;
     EditProfile: undefined;
+    Post: undefined;
+    Home: undefined;
+    Feed: undefined;
 }
