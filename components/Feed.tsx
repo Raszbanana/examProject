@@ -1,9 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StackParamList } from "../typings/navigations";
-
+import { StyleSheet, Text, View } from 'react-native';
 
 const Feed = ({ id, title, text }:
     {id: number,  title: string, text: string}) => {

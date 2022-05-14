@@ -24,16 +24,29 @@ const Tab = createBottomTabNavigator();
 
 function ChatStackNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name='Screen1' component={Screen1} />
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: 'yellow',
+        },
+        headerTintColor: 'black',
+      }}
+    >
+      <Stack.Screen name='Chats' component={Screen1} />
       <Stack.Screen name='Screen2' component={Screen2} />
       <Stack.Screen name='Screen3' component={Screen3} />
     </Stack.Navigator>
   );
 }
-function FeedStackNavigator() {
+function HomeStackNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#93edf7',
+      },
+      headerTintColor: 'black',
+    }}>
       <Stack.Screen name='Feed' component={HomeScreen} />
       <Stack.Screen name='Post' component={Post} />
     </Stack.Navigator>
@@ -42,7 +55,13 @@ function FeedStackNavigator() {
 
 function ProfileStackNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+        screenOptions={{
+      headerStyle: {
+        backgroundColor: '#93edf7',
+      },
+      headerTintColor: 'black',
+    }}>
       <Stack.Screen name='Profile' component={ProfileScreen} />
       <Stack.Screen name='EditProfile' component={EditProfileScreen} />
     </Stack.Navigator>
@@ -61,9 +80,7 @@ export default function Navigation() {
       {user !== null ? (
         // Show the app with all navigation
         <Tab.Navigator screenOptions={{ headerShown: false }}>
-          <Tab.Screen name='Home' component={FeedStackNavigator} />
-          {/*   <Tab.Screen name='Post' component={FeedStackNavigator} /> */}
-          {/* <Tab.Screen name="Discover" component={DiscoverScreen} /> */}
+          <Tab.Screen name='Home' component={HomeStackNavigator} />
           <Tab.Screen name='Chat' component={ChatStackNavigator} />
           <Tab.Screen name='Menu' component={ProfileStackNavigator} />
         </Tab.Navigator>

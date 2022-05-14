@@ -10,7 +10,7 @@ import { StackParamList } from "../typings/navigations";
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
-    "Screen1"
+    "Chats"
 >
 
 export default function Screen1() {
@@ -37,7 +37,6 @@ export default function Screen1() {
 
     return (
         <View style={styles.container}>
-            <Text>Screen 1</Text>
             <Button title="Go to screen 2" onPress={() => navigation.navigate("Screen2")} />
             {/* <Text>{isHappy.toString()}</Text>
             <Button title="Toggle happy" onPress={() => dispatch(toggleHappy())} /> */}
@@ -48,6 +47,7 @@ export default function Screen1() {
             />
 
             <TextInput
+                 style={styles.input}
                 onChangeText={onChangeTitle}
                 value={title}
                 placeholder="Chatroom name"
@@ -64,4 +64,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    input: {
+        borderColor: '#000000',
+        borderWidth: 1,
+        width: '80%',
+        height: 30,
+        color: 'black',
+        marginTop: 0,
+        marginBottom: 30,
+        textAlign: 'center',
+      },
 })
