@@ -30,7 +30,7 @@ const ChatroomScreen = () => {
       isSending={item.isSending}
     ></ChatMessage>
   );
-  const DATA: Message[] = [
+  const messages: Message[] = [
     {
       id: '1101',
       name: 'Paweł',
@@ -72,15 +72,15 @@ const ChatroomScreen = () => {
       isSending: true,
     },
   ];
-  const chatroom = new Chatroom('test', 1, DATA);
+  const chatroom = new Chatroom('test', 1, messages);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{chatroom.title}</Text>
       <FlatList
-        data={DATA}
+        data={messages}
         renderItem={renderItem}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );
