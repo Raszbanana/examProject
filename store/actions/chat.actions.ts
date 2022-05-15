@@ -29,7 +29,7 @@ export const fetchChatrooms = () => {
             for (const key in data) {
                 // create Chatroom objects and push them into the array chatrooms.
                 const obj = data[key];
-                chatrooms.push(new Chatroom(obj.title, obj.status, obj.message, new Date(obj.timestamp), key))
+                chatrooms.push(new Chatroom(obj.title,obj.id, []))
             }
 
             dispatch({ type: 'FETCH_CHATROOMS', payload: chatrooms })

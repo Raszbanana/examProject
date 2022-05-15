@@ -1,8 +1,5 @@
-export class Chatroom {
-    constructor(public title: string, public status: Status,
-        public message: string, public timestamp: Date, public id?: string,) { }
-}
+import { Message } from "./Message";
 
-export enum Status {
-    READ = "READ", UNREAD = "UNREAD"
+export class Chatroom {
+    constructor(public title: string, public id: number, public messages: Message[]) { }
 }
