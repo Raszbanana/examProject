@@ -1,4 +1,4 @@
-import { ChatroomPreview } from "../../entities/ChatroomPreview";
+import { Chatroom } from "../../entities/Chatroom";
 
 // export const TOGGLE_HAPPY = 'TOGGLE_HAPPY';
 export const ADD_CHATROOM = 'ADD_CHATROOM';
@@ -25,11 +25,11 @@ export const fetchChatrooms = () => {
             //dispatch({type: FETCH_CHATROOM_FAILED, payload: 'something'})
         } else {
             const data = await response.json(); // json to javascript
-            let chatrooms: ChatroomPreview[] = []
+            let chatrooms: Chatroom[] = []
             for (const key in data) {
                 // create Chatroom objects and push them into the array chatrooms.
                 const obj = data[key];
-                chatrooms.push(new ChatroomPreview(obj.title, obj.status, obj.message, new Date(obj.timestamp), key))
+                chatrooms.push(new Chatroom(obj.title, obj.status, obj.message, new Date(obj.timestamp), key))
             }
 
             dispatch({ type: 'FETCH_CHATROOMS', payload: chatrooms })
@@ -37,7 +37,7 @@ export const fetchChatrooms = () => {
     };
 }
 
-export const addChatroom = (chatroom: ChatroomPreview) => {
+export const addChatroom = (chatroom: Chatroom) => {
     return async (dispatch: any, getState: any) => {
         const token = getState().user.idToken;
 

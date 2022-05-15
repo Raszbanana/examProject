@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
 import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { ChatroomPreview, Status } from '../entities/ChatroomPreview';
+import { Chatroom, Status } from '../entities/Chatroom';
 import { addChatroom, fetchChatrooms } from '../store/actions/chat.actions';
 // import { toggleHappy } from '../store/actions/chat.actions';
 import { StackParamList } from "../typings/navigations";
@@ -18,7 +18,7 @@ export default function Screen1() {
     const [title, onChangeTitle] = React.useState('');
 
     // const isHappy = useSelector((state: any) => state.chat.isHappy) // subscribe to redux store and select attribute (isHappy)
-    const chatrooms: ChatroomPreview[] = useSelector((state: any) => state.chat.chatrooms)
+    const chatrooms: Chatroom[] = useSelector((state: any) => state.chat.chatrooms)
 
     // console.log("isHappy", isHappy);
     const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export default function Screen1() {
     }, [])
 
     const handleAddChatroom = () => {
-        const chatroom: ChatroomPreview = new ChatroomPreview(title, Status.UNREAD, '', new Date());
+        const chatroom: Chatroom = new Chatroom(title, Status.UNREAD, '', new Date());
         dispatch(addChatroom(chatroom));
     }
     const renderChatroom = ({ item }: { item: any }) => (

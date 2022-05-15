@@ -1,4 +1,4 @@
-import { ChatroomPreview, Status } from '../entities/ChatroomPreview';
+import { Chatroom, Status } from '../entities/Chatroom';
 import { useRoute } from '@react-navigation/native'
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -9,7 +9,7 @@ const ChatroomScreen = () => {
     // If the id on a message id is not equal to the correlating users own id then the text should be left aligned if not,
     // then the text should be right aligned
     // assign chatroom attributes: title, status, message, timestamp, id,  
-    const chatroom = new ChatroomPreview("test", Status.READ, "a test message", new Date());
+    const chatroom = new Chatroom("test", Status.READ, "a test message", new Date());
 
     return (
         <View style={styles.container}>
