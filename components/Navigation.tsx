@@ -17,6 +17,7 @@ import Screen2 from './../screens/Screen2';
 import Screen3 from './../screens/Screen3';
 import Post from './../screens/Post';
 import LoginScreen from './../screens/LoginScreen';
+import ChatroomScreen from '../screens/ChatroomScreen'
 import { StackParamList } from './../typings/navigations';
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -33,6 +34,7 @@ function ChatStackNavigator() {
       }}
     >
       <Stack.Screen name='Chats' component={Screen1} />
+      <Stack.Screen name='ChatroomScreen' component={ChatroomScreen} />
       <Stack.Screen name='Screen2' component={Screen2} />
       <Stack.Screen name='Screen3' component={Screen3} />
     </Stack.Navigator>

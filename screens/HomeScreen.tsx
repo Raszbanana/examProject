@@ -17,7 +17,11 @@ export default function HomeScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation<ScreenNavigationType>() 
   const renderItem = ({ item }: { item: any}) => (
-    <TouchableHighlight onPress={() => { navigation.navigate('Post', {
+    <TouchableHighlight
+      activeOpacity={0.8}
+      underlayColor="#DDDDDD"
+      style={styles.highlighter}
+      onPress={() => { navigation.navigate('Post', {
       id: item.id,
       title: item.title, 
       text: item.text
@@ -78,4 +82,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    highlighter: {
+      
+    }
 })

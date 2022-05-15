@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
-import { Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { Chatroom, Status } from '../entities/Chatroom';
+import { ChatroomPreview, Status } from '../entities/ChatroomPreview';
 import { addChatroom, fetchChatrooms } from '../store/actions/chat.actions';
 // import { toggleHappy } from '../store/actions/chat.actions';
 import { StackParamList } from "../typings/navigations";
@@ -18,7 +18,7 @@ export default function Screen1() {
     const [title, onChangeTitle] = React.useState('');
 
     // const isHappy = useSelector((state: any) => state.chat.isHappy) // subscribe to redux store and select attribute (isHappy)
-    const chatrooms: Chatroom[] = useSelector((state: any) => state.chat.chatrooms)
+    const chatrooms: ChatroomPreview[] = useSelector((state: any) => state.chat.chatrooms)
 
     // console.log("isHappy", isHappy);
     const dispatch = useDispatch()
@@ -28,16 +28,25 @@ export default function Screen1() {
     }, [])
 
     const handleAddChatroom = () => {
-        const chatroom: Chatroom = new Chatroom(title, Status.UNREAD, '', new Date());
+        const chatroom: ChatroomPreview = new ChatroomPreview(title, Status.UNREAD, '', new Date());
         dispatch(addChatroom(chatroom));
     }
     const renderChatroom = ({ item }: { item: any }) => (
-        <Text>{item.title}</Text>
+        <TouchableHighlight
+        style={styles.highlighter} 
+        activeOpacity={0.8}
+        underlayColor="#DDDDDD"
+            onPress={()=> {
+                navigation.navigate("ChatroomScreen")
+        }}>
+        <Text style={styles.chatTitle}
+        >{item.title}
+        </Text>
+        </TouchableHighlight>
     );
 
     return (
         <View style={styles.container}>
-            <Button title="Go to screen 2" onPress={() => navigation.navigate("Screen2")} />
             {/* <Text>{isHappy.toString()}</Text>
             <Button title="Toggle happy" onPress={() => dispatch(toggleHappy())} /> */}
 
@@ -47,7 +56,7 @@ export default function Screen1() {
             />
 
             <TextInput
-                 style={styles.input}
+                style={styles.input}
                 onChangeText={onChangeTitle}
                 value={title}
                 placeholder="Chatroom name"
@@ -59,6 +68,7 @@ export default function Screen1() {
 
 const styles = StyleSheet.create({
     container: {
+        paddingTop: 30,
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
@@ -74,4 +84,10 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         textAlign: 'center',
       },
+    highlighter: {
+        padding: 10,
+    },
+    chatTitle: {
+        fontSize: 20
+    }
 })

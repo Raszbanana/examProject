@@ -1,4 +1,4 @@
-import { Chatroom } from "../../entities/Chatroom";
+import { ChatroomPreview } from "../../entities/ChatroomPreview";
 
 // export const TOGGLE_HAPPY = 'TOGGLE_HAPPY';
 export const ADD_CHATROOM = 'ADD_CHATROOM';
@@ -25,24 +25,19 @@ export const fetchChatrooms = () => {
             //dispatch({type: FETCH_CHATROOM_FAILED, payload: 'something'})
         } else {
             const data = await response.json(); // json to javascript
-            let chatrooms: Chatroom[] = []
+            let chatrooms: ChatroomPreview[] = []
             for (const key in data) {
                 // create Chatroom objects and push them into the array chatrooms.
                 const obj = data[key];
-                chatrooms.push(new Chatroom(obj.title, obj.status, obj.message, new Date(obj.timestamp), key))
+                chatrooms.push(new ChatroomPreview(obj.title, obj.status, obj.message, new Date(obj.timestamp), key))
             }
-
-            console.log("chatrooms", chatrooms);
-
-            // console.log("data from server", data);
-            //chatroom.id = data.name;
 
             dispatch({ type: 'FETCH_CHATROOMS', payload: chatrooms })
         }
     };
 }
 
-export const addChatroom = (chatroom: Chatroom) => {
+export const addChatroom = (chatroom: ChatroomPreview) => {
     return async (dispatch: any, getState: any) => {
         const token = getState().user.idToken;
 
@@ -60,19 +55,12 @@ export const addChatroom = (chatroom: Chatroom) => {
             )
         });
 
-        // console.log(await response.json());
-
         if (!response.ok) {
             //There was a problem..
             //dispatch({type: ADD_CHATROOM_FAILED, payload: 'something'})
         } else {
             const data = await response.json(); // json to javascript
-            // let chatrooms = []
-            // for (const key in data) {
-            //     console.log(data[key].name)​
-            // }
-
-            console.log("data from server", data);
+            // console.log("data from server", data);
             chatroom.id = data.name;
 
             dispatch({ type: ADD_CHATROOM, payload: chatroom })

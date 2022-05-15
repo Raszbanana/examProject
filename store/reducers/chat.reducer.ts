@@ -1,8 +1,8 @@
-import { Chatroom } from "../../entities/Chatroom";
+import { ChatroomPreview } from "../../entities/ChatroomPreview";
 import { ADD_CHATROOM, FETCH_CHATROOMS } from "../actions/chat.actions";
 // import { TOGGLE_HAPPY } from "../actions/chat.actions";
 interface ReduxState {
-    chatrooms: Chatroom[]
+    chatrooms: ChatroomPreview[]
     // isHappy: boolean
     counter: number
     name: string
@@ -17,7 +17,7 @@ const initialState: ReduxState = {
 
 interface ReduxAction {
     type: string,
-    payload?: boolean | number | string | Chatroom
+    payload?: boolean | number | string | ChatroomPreview
 }
 
 const chatReducer = (state: ReduxState = initialState, action: ReduxAction) => {
