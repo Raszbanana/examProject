@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import { Card } from "@rneui/themed";
 
 const Post = ({
   id,
@@ -23,6 +24,8 @@ const Post = ({
   const test = () => {
     console.log('test');
   };
+  let banner = require('../assets/macBackground.jpeg');
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -31,18 +34,30 @@ const Post = ({
         style={styles.background}
       >
         <ScrollView style={styles.scroll}>
-          <Text style={styles.text}></Text>
-          <Text style={styles.title}>{route.params.title}</Text>
-          <Text style={styles.text}>{route.params.text}</Text>
-          <Text style={styles.id}>{route.params.id}</Text>
-          <TouchableHighlight
-            activeOpacity={0.8}
-            underlayColor='red'
-            style={styles.button}
-            onPress={test}
-          >
-            <Text style={styles.button}>Press me!</Text>
-          </TouchableHighlight>
+          <View style={styles.card}>
+            <View style={styles.innerCard}>
+              <View style={styles.subHeader_background}>
+                <Card.Title>
+                  <Text style={styles.subHeader}>A page about {route.params.title}</Text>
+                </Card.Title>
+              </View>
+              <Card.Image style={{ padding: 0 }} source={banner} />
+              <View style={styles.mainSection}>
+              <Text style={styles.text}></Text>
+              <Text style={styles.text}>{route.params.text}</Text>
+              <Text style={styles.id}>{route.params.id}</Text>
+              <TouchableHighlight
+                activeOpacity={0.8}
+                underlayColor='red'
+                style={styles.button}
+                onPress={test}
+              >
+                <Text style={styles.button}>Press me!</Text>
+              </TouchableHighlight>
+              </View>
+            </View>
+            {/* </Card> */}
+          </View>
         </ScrollView>
       </ImageBackground>
     </View>
@@ -52,14 +67,6 @@ const Post = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    // borderColor: '#000',
-    // borderWidth: 1,
-    // width: "100%",
-    // height: 100,
-    // marginTop:10,
-    // marginBottom:10,
-    // alignItems: 'center',
     justifyContent: 'center',
   },
   id: {
@@ -73,11 +80,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black',
+
   },
   background: {
-    // alignItems: 'center',
     height: '100%',
     width: '100%',
+    opacity: 1
   },
   button: {
     color: 'black',
@@ -87,8 +95,38 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   scroll: {
-
+    backgroundColor: '#00000050'
   },
+  card: {
+    minHeight: '95%',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.53,
+    shadowRadius: 13.97,
+
+    elevation: 21,
+  },
+  innerCard: {
+    height: '95%',
+    flexDirection: 'column',
+  },
+  subHeader: {
+    color: 'white',
+  },
+  subHeader_background: {
+    backgroundColor: 'black'
+  },
+  mainSection: {
+    marginTop: 10,
+    borderRadius: 10,
+    width: '95%',
+    marginLeft: '2.5%',
+    backgroundColor: 'white',
+    minHeight: '80%'
+  }
 });
 
 export default Post;
