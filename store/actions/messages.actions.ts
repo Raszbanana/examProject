@@ -58,7 +58,8 @@ export const addMessage = (chatroom: Chatroom, message: Message) => {
              //There was a problem..
          } else {
              const data = await response.json(); // json to javascript
-             /* dispatch({ type: 'ADD_MESSAGE', payload: chatroom }) */
+             message.messageId = data.name;
+             dispatch({ type: 'ADD_MESSAGE', payload: chatroom }) 
          }
      }; 
  }

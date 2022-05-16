@@ -16,6 +16,7 @@ import ChatMessage from '../components/ChatMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { User } from '../entities/User';
 import {addMessage, fetchMessages} from '../store/actions/messages.actions'
+import { fetchChatrooms } from '../store/actions/chat.actions';
 
 type ScreenNavigationType = NativeStackNavigationProp<
   StackParamList,
@@ -33,20 +34,36 @@ const ChatroomScreen = ({ route }: any) => {
   const chatrooms: Chatroom[] = useSelector(
     (state: any) => (state.chat.chatrooms)
   );
-  const listOfMessages: Message[] = useSelector(
-    (state: any) => (state.chat.messages)
-  );
+  const myChar: any = chatrooms.filter((chat) => chat.id === chatroomId);
+  const messagesIntheChatroom: any[] = [];
 
-  console.log(listOfMessages)
- 
+    if(myChar[0].messages !=undefined){
+    Object.keys(myChar[0].messages).forEach((msgid) =>{
+      messagesIntheChatroom.push(myChar[0].messages[msgid])
+    })
+  }
 
-  const myChar: Chatroom[] = chatrooms.filter((chat) => chat.id === chatroomId);
+   console.log(messagesIntheChatroom);
 
 
 
- /*  useEffect(() => {
-    dispatch(fetchMessages(myChar[0]));
-  }, []); */
+   const messages: Message[] = [];
+    messagesIntheChatroom.forEach((object) =>{
+      messages.push({
+      messageId: object.messageId,
+      userId: object.userId,
+      name: object.name,
+      status: object.status,
+      text: object.text,
+      timestamp: object.timestamp,
+      isSending: object.isSending,
+      })
+    })
+
+
+  useEffect(() => {
+    dispatch(fetchChatrooms());
+  }, []); 
 
   // fetch from database where id = route.params.id
   // Every message in the chat should have a correlating userId
@@ -56,7 +73,7 @@ const ChatroomScreen = ({ route }: any) => {
 
   const sendMessage = () => {
     const _message = {
-      messageId: '1101',
+      messageId: 'id',
       userId: user.id,
       name: 'Paweł',
       status: Status.UNREAD,
@@ -78,53 +95,6 @@ const ChatroomScreen = ({ route }: any) => {
       isSending={item.isSending}
     ></ChatMessage>
   );
-  const messages: Message[] = [
-    {
-      messageId: '1101',
-      userId: 'vIkp8LuhRBg4JwbEBhWEa5QWVMf1',
-      name: 'Paweł',
-      status: Status.READ,
-      text: 'hola',
-      timestamp: new Date().getDate(),
-      isSending: false,
-    },
-    {
-      messageId: '1102',
-      userId: '2',
-      name: 'Nikoali',
-      status: Status.UNREAD,
-      text: 'hej',
-      timestamp: new Date().getDate(),
-      isSending: false,
-    },
-    {
-      messageId: '1101',
-      userId: 'vIkp8LuhRBg4JwbEBhWEa5QWVMf1',
-      name: 'Paweł',
-      status: Status.READ,
-      text: 'I made a chat!',
-      timestamp: new Date().getDate(),
-      isSending: false,
-    },
-    {
-      messageId: '1102',
-      userId: '2',
-      name: 'Nikoali',
-      status: Status.UNREAD,
-      text: 'Looks fine af',
-      timestamp: new Date().getDate(),
-      isSending: false,
-    },
-    {
-      messageId: '1101',
-      userId: 'vIkp8LuhRBg4JwbEBhWEa5QWVMf1',
-      name: 'Paweł',
-      status: Status.READ,
-      text: 'Its hardcoded tho :/',
-      timestamp: new Date().getDate(),
-      isSending: false,
-    },
-  ];
 
   messages.forEach((msg) => {
     if (msg.userId === user.id) {
