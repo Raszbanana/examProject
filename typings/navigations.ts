@@ -7,8 +7,8 @@ export type StackParamList = {
     Profile: undefined;
     EditProfile: undefined;
     Post: {id: string, title: string, text: string};
+    ChatroomScreen: { id: string }
     Message: [{ text: string}];
     Home: undefined;
     Feed: undefined;
-    ChatroomScreen: undefined;
 }

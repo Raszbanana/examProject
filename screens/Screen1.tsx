@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Chatroom } from '../entities/Chatroom';
-import { Status } from '../entities/Message';
+import { Message, Status } from '../entities/Message';
 import { User } from '../entities/User';
 import { addChatroom, fetchChatrooms } from '../store/actions/chat.actions';
 // import { toggleHappy } from '../store/actions/chat.actions';
@@ -49,17 +49,7 @@ export default function Screen1() {
   }, []);
 
   const handleAddChatroom = () => {
-    const messages = [
-      {
-        messageId: '',
-        userId: '',
-        name: '',
-        status: Status.UNREAD,
-        text: '',
-        timestamp: 0,
-        isSending: false,
-      },
-    ];
+    const messages: Message[] = [];
     const chatroom: Chatroom = new Chatroom(
       title, messages, 'id');
     dispatch(addChatroom(chatroom));
@@ -70,7 +60,9 @@ export default function Screen1() {
       activeOpacity={0.8}
       underlayColor='#DDDDDD'
       onPress={() => {
-        navigation.navigate('ChatroomScreen');
+        navigation.navigate('ChatroomScreen', {
+          id: item.id,
+        });
       }}
     >
       <Text style={styles.chatTitle}>{item.title}</Text>
@@ -85,7 +77,7 @@ export default function Screen1() {
       <FlatList
         data={chatrooms}
         renderItem={renderChatroom}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
       /> 
       <TextInput
         style={styles.input}
