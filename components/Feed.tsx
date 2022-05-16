@@ -4,13 +4,14 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 const Feed = ({ id, title, text, subtitle }:
     {id: number,  title: string, text: string, subtitle: string}) => {
       let xsBanner = require('../assets/macBackground.jpeg');
+      
     return (
         <View style={styles.container}>
             <Image style={styles.xsBanner} source={xsBanner}></Image>
             <Text style={styles.id}>{id}</Text>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.subtitle}>{subtitle}</Text>
-            <Text style={styles.text}>{text}</Text>
+            <Text numberOfLines={3} style={styles.text}>{text}</Text>
         </View>
     );
 }
@@ -60,8 +61,9 @@ const styles = StyleSheet.create({
   xsBanner: {
     // display: 'flex',
     // position: 'relative',
+    borderRadius: 5,
     height: '20%',
-    width: '100%',
+    width: '90%',
   }
 });
 

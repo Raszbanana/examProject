@@ -14,10 +14,12 @@ const Post = ({
   id,
   title,
   text,
+  subtitle,
 }: {
   id: number;
   title: string;
   text: string;
+  subtitle: string;
   image: string;
 }) => {
   const route = useRoute();
