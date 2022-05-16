@@ -30,22 +30,20 @@ const Post = ({
         resizeMode='cover'
         style={styles.background}
       >
-        <View style={styles.title_box}>
-          <ScrollView style={styles.scroll}>
-            <Text style={styles.text}>For the first time</Text>
-            <Text style={styles.title}>{route.params.title}</Text>
-            <Text style={styles.id}>{route.params.id}</Text>
-            <Text style={styles.text}>{route.params.text}</Text>
-            <TouchableHighlight
-              activeOpacity={0.8}
-              underlayColor='red'
-              style={styles.button}
-              onPress={test}
-            >
-              <Text>Press me!</Text>
-            </TouchableHighlight>
-          </ScrollView>
-        </View>
+        <ScrollView style={styles.scroll}>
+          <Text style={styles.text}></Text>
+          <Text style={styles.title}>{route.params.title}</Text>
+          <Text style={styles.text}>{route.params.text}</Text>
+          <Text style={styles.id}>{route.params.id}</Text>
+          <TouchableHighlight
+            activeOpacity={0.8}
+            underlayColor='red'
+            style={styles.button}
+            onPress={test}
+          >
+            <Text style={styles.button}>Press me!</Text>
+          </TouchableHighlight>
+        </ScrollView>
       </ImageBackground>
     </View>
   );
@@ -74,22 +72,23 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   text: {
-    color: 'white',
+    color: 'black',
   },
   background: {
     // alignItems: 'center',
     height: '100%',
     width: '100%',
   },
-  title_box: {
-    // borderWidth: 1,
-    // backgroundColor: 'rgba(188, 205, 245, 1)',
-  },
   button: {
-    borderWidth: 1,
+    color: 'black',
+    textAlign: 'center',
+    width: 60,
+    borderWidth: 0.5,
     borderRadius: 10,
   },
-  scroll: {},
+  scroll: {
+
+  },
 });
 
 export default Post;
