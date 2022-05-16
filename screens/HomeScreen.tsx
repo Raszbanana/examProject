@@ -18,13 +18,13 @@ export default function HomeScreen() {
   const navigation = useNavigation<ScreenNavigationType>() 
   const renderItem = ({ item }: { item: any}) => (
     <TouchableHighlight
-      activeOpacity={0.8}
-      underlayColor="#DDDDDD"
+      activeOpacity={1}
+      underlayColor="#f8b1f5"
       style={styles.highlighter}
       onPress={() => { navigation.navigate('Post', {
       id: item.id,
       title: item.title, 
-      text: item.text
+      text: item.text,
     })}}>
        <Feed id={item.id} title={item.title} text={item.text}></Feed>
     </TouchableHighlight>    
@@ -33,7 +33,7 @@ export default function HomeScreen() {
         {
           id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
           title: 'First Item',
-          text: "testText"
+          text: `Du ved det`,
         },
         {
           id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -68,7 +68,6 @@ export default function HomeScreen() {
             data={DATA}
             renderItem={renderItem}
             keyExtractor={item => item.id}/>
-            <Text>Home Screen</Text>
             <Button title="Logout" onPress={() => dispatch(logout())} />
         </View> 
     );
@@ -79,10 +78,12 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 40,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
     highlighter: {
+
       
+
     }
 })

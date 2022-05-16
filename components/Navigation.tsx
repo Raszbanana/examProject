@@ -20,6 +20,7 @@ import LoginScreen from './../screens/LoginScreen';
 import ChatroomScreen from '../screens/ChatroomScreen'
 import { StackParamList } from './../typings/navigations';
 
+
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
 
@@ -45,12 +46,12 @@ function HomeStackNavigator() {
     <Stack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#93edf7',
+        backgroundColor: '#fefcff',
       },
-      headerTintColor: 'black',
+      headerTintColor: 'red',
     }}>
       <Stack.Screen name='Feed' component={HomeScreen} />
-      <Stack.Screen name='Post' component={Post} />
+      <Stack.Screen name='Post' component={Post} options={({ route }) => ({ title: route.params.title })} />
     </Stack.Navigator>
   );
 }

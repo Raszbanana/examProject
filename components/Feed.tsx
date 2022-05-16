@@ -7,28 +7,47 @@ const Feed = ({ id, title, text }:
     return (
         <View style={styles.container}>
             <Text style={styles.id}>{id}</Text>
-            <Text>{title}</Text>
-            <Text>{text}</Text>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.text}>{text}</Text>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        borderColor: '#000',
-        borderWidth: 1,
-        width: 300,
-        height: 100,
-        marginTop:10,
-        marginBottom:10,
-        // alignItems: 'center',
-        // justifyContent: 'center',
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderColor: '#000',
+    borderWidth: 0,
+    borderRadius: 30,
+    padding: 10,
+    height: 200,
+    maxWidth:'90%',
+    marginTop: 10,
+    marginLeft: '5%',
+    marginBottom: 10,
+    alignItems: 'center',
+    // justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
     },
-    id: {
-     display: 'none',
-    },
-})
+    shadowOpacity: 0.53,
+    shadowRadius: 13.97,
+
+    elevation: 21,
+  },
+
+  id: {
+    display: 'none',
+  },
+  title: {
+    color: 'red'
+  },
+  text: {
+
+  }
+});
 
 export default Feed;
