@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { Chatroom } from '../entities/Chatroom';
 import { Status } from '../entities/Message';
+import { User } from '../entities/User';
 import { addChatroom, fetchChatrooms } from '../store/actions/chat.actions';
 // import { toggleHappy } from '../store/actions/chat.actions';
 import { StackParamList } from '../typings/navigations';
@@ -23,11 +24,19 @@ export default function Screen1() {
   const navigation = useNavigation<ScreenNavigationType>();
   const [title, onChangeTitle] = React.useState('');
 
+
   // const isHappy = useSelector((state: any) => state.chat.isHappy) // subscribe to redux store and select attribute (isHappy)
   const chatrooms: Chatroom[] = useSelector(
     (state: any) => state.chat.chatrooms
     );
-/*     console.log('jebane kurwa czaty',chatrooms); */
+
+    const user: User= useSelector(
+      (state: any) => state.user.loggedInUser
+      );
+
+
+  
+
 
 
 
@@ -42,7 +51,8 @@ export default function Screen1() {
   const handleAddChatroom = () => {
     const messages = [
       {
-        id: '',
+        messageId: '',
+        userId: '',
         name: '',
         status: Status.UNREAD,
         text: '',
@@ -51,10 +61,7 @@ export default function Screen1() {
       },
     ];
     const chatroom: Chatroom = new Chatroom(
-      title,
-      chatrooms.length++,
-      messages
-    );
+      title, messages, 'id');
     dispatch(addChatroom(chatroom));
   };
   const renderChatroom = ({ item }: { item: any }) => (
@@ -75,12 +82,11 @@ export default function Screen1() {
       {/* <Text>{isHappy.toString()}</Text>
             <Button title="Toggle happy" onPress={() => dispatch(toggleHappy())} /> */}
 
-     {/*  <FlatList
+      <FlatList
         data={chatrooms}
         renderItem={renderChatroom}
         keyExtractor={(item) => item.id.toString()}
-      /> */}
-
+      /> 
       <TextInput
         style={styles.input}
         onChangeText={onChangeTitle}

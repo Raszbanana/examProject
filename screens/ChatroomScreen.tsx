@@ -14,6 +14,7 @@ type ScreenNavigationType = NativeStackNavigationProp<
 
 const ChatroomScreen = () => {
   const route = useRoute();
+
   // fetch from database where id = route.params.id
   // Every message in the chat should have a correlating userId
   // If the id on a message id is not equal to the correlating users own id then the text should be left aligned if not,
@@ -32,47 +33,53 @@ const ChatroomScreen = () => {
   );
   const messages: Message[] = [
     {
-      id: '1101',
+      messageId: '1101',
+      userId: 'vIkp8LuhRBg4JwbEBhWEa5QWVMf1',
       name: 'Paweł',
       status: Status.READ,
       text: 'hola',
-      timestamp: 11,
-      isSending: true,
+      timestamp:  new Date().getDate(),
+      isSending: false,
     },
     {
-      id: '1102',
+      messageId: '1102',
+      userId: '2',
       name: 'Nikoali',
       status: Status.UNREAD,
       text: 'hej',
-      timestamp: 10,
+      timestamp:  new Date().getDate(),
       isSending: false,
     },
     {
-      id: '1101',
+      messageId: '1101',
+      userId: 'vIkp8LuhRBg4JwbEBhWEa5QWVMf1',
       name: 'Paweł',
       status: Status.READ,
       text: 'I made a chat!',
-      timestamp: 11,
-      isSending: true,
-    },
-    {
-      id: '1102',
-      name: 'Nikoali',
-      status: Status.UNREAD,
-      text: 'Looks fine af',
-      timestamp: 10,
+      timestamp:  new Date().getDate(),
       isSending: false,
     },
     {
-      id: '1101',
+      messageId: '1102',
+      userId: '2',
+      name: 'Nikoali',
+      status: Status.UNREAD,
+      text: 'Looks fine af',
+      timestamp:  new Date().getDate(),
+      isSending: false,
+    },
+    {
+      messageId: '1101',
+      userId: 'vIkp8LuhRBg4JwbEBhWEa5QWVMf1',
       name: 'Paweł',
       status: Status.READ,
       text: 'Its hardcoded tho :/',
-      timestamp: 11,
-      isSending: true,
+      timestamp: new Date().getDate(),
+      isSending: false,
     },
   ];
-  const chatroom = new Chatroom('test', 1, messages);
+
+  const chatroom = new Chatroom('test', messages, 'id');
 
   return (
     <View style={styles.container}>
@@ -80,7 +87,7 @@ const ChatroomScreen = () => {
       <FlatList
         data={messages}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.messageId}
       />
     </View>
   );
