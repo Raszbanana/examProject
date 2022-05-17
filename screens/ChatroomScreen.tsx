@@ -15,7 +15,7 @@ import React, { useEffect } from 'react';
 import ChatMessage from '../components/ChatMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { User } from '../entities/User';
-import {addMessage, fetchMessages} from '../store/actions/messages.actions'
+import { addMessage, fetchMessages} from '../store/actions/messages.action'
 import { fetchChatrooms } from '../store/actions/chat.actions';
 
 type ScreenNavigationType = NativeStackNavigationProp<
@@ -34,21 +34,18 @@ const ChatroomScreen = ({ route }: any) => {
   const chatrooms: Chatroom[] = useSelector(
     (state: any) => (state.chat.chatrooms)
   );
+  const mes: Message[] = useSelector(
+    (state: any) => (state.message.messages)
+  ); 
+
   const myChar: any = chatrooms.filter((chat) => chat.id === chatroomId);
   const messagesIntheChatroom: any[] = [];
 
-    if(myChar[0].messages !=undefined){
-    Object.keys(myChar[0].messages).forEach((msgid) =>{
-      messagesIntheChatroom.push(myChar[0].messages[msgid])
-    })
-  }
-
-   console.log(messagesIntheChatroom);
-
+  const myChatroom: Chatroom = myChar[0];
 
 
    const messages: Message[] = [];
-    messagesIntheChatroom.forEach((object) =>{
+    mes.forEach((object) =>{
       messages.push({
       messageId: object.messageId,
       userId: object.userId,
@@ -60,10 +57,20 @@ const ChatroomScreen = ({ route }: any) => {
       })
     })
 
-
   useEffect(() => {
     dispatch(fetchChatrooms());
   }, []); 
+  
+  useEffect(() => {
+    dispatch(fetchMessages(myChatroom));
+  }, []);
+
+
+  
+
+
+
+  
 
   // fetch from database where id = route.params.id
   // Every message in the chat should have a correlating userId
@@ -81,8 +88,9 @@ const ChatroomScreen = ({ route }: any) => {
       timestamp: new Date().getUTCDate(),
       isSending: false,
     };
-
-    dispatch(addMessage(myChar[0], _message));
+    if(message != ''){
+    dispatch(addMessage(chatroomId, _message));
+    }
   };
 
   const renderItem = ({ item }: { item: any }) => (
@@ -102,16 +110,15 @@ const ChatroomScreen = ({ route }: any) => {
     }
   });
 
-  const chatroom = new Chatroom('test', messages, 'id');
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{chatroom.title}</Text>
-      <FlatList
+      <Text style={styles.title}>{myChatroom.title}</Text>
+      { <FlatList
         data={messages}
         renderItem={renderItem}
         keyExtractor={(item) => item.messageId}
-      />
+      />}
       <View style={styles.messageInput}>
         <TextInput
           style={styles.input}

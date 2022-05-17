@@ -1,6 +1,5 @@
-import { Chatroom } from "../../entities/Chatroom";
 import { Message } from "../../entities/Message";
-import { ADD_MESSAGE, FETCH_MESSAGES } from "../actions/messages.actions";
+import { ADD_MESSAGE, FETCH_MESSAGES } from "../actions/messages.action";
 interface ReduxState {
     messages: Message[]
 }
@@ -11,27 +10,25 @@ const initialState: ReduxState = {
 
 interface ReduxAction {
     type: string,
-    payload?: boolean | number | string | Chatroom
+    payload?: boolean | number | string | Message 
 }
 
-const messagesReducer = (state: ReduxState = initialState, action: ReduxAction) => {
+const messageReducer = (state: ReduxState = initialState, action: ReduxAction) => {
     switch (action.type) {
+      
+
         case ADD_MESSAGE:
-           /* for(let chatroom of state.chatrooms){
-               if(chatroom.id === action.payload.id){
-                   chatroom = action.payload as Chatroom;
-               }
-           } */
-            console.log('action', action.payload)
-            console.log('state', state);
-            return {...state}
-            case FETCH_MESSAGES:
-              // create a new state object with the action.payload assigned to the chatrooms array.
-              return { ...state, messages: action.payload }
+            return { ...state, messages: [...state.messages, action.payload] } 
+        // state.chatrooms.push(chatroom) // mutating state. Not allowed
+        return { ...state}
+
+        case FETCH_MESSAGES:
+            // create a new state object with the action.payload assigned to the chatrooms array
+            return { ...state, messages: action.payload }
 
         default:
             return state;
     }
 };
 
-export default messagesReducer;
+export default messageReducer;

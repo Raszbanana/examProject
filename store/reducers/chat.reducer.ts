@@ -21,10 +21,9 @@ const chatReducer = (state: ReduxState = initialState, action: ReduxAction) => {
 
         //     return { ...state, isHappy: !state.isHappy }
 
-        case ADD_CHATROOM:
-            console.log(action.payload);
+       case ADD_CHATROOM:
             return { ...state, chatrooms: [...state.chatrooms, action.payload] }
-        // state.chatrooms.push(chatroom) // mutating state. Not allowed
+        // state.chatrooms.push(chatroom) // mutating state. Not allowed */
 
         case FETCH_CHATROOMS:
             // create a new state object with the action.payload assigned to the chatrooms array.

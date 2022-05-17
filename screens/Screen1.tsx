@@ -52,7 +52,9 @@ export default function Screen1() {
     const messages: Message[] = [];
     const chatroom: Chatroom = new Chatroom(
       title, messages, 'id');
+      if(title != ''){
     dispatch(addChatroom(chatroom));
+      }
   };
   const renderChatroom = ({ item }: { item: any }) => (
     <TouchableHighlight
