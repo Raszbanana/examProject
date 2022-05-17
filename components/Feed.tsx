@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-const Feed = ({ id, title, text, subtitle }:
-    {id: number,  title: string, text: string, subtitle: string}) => {
+const Feed = ({ id, title, text, subtitle, img }:
+    {id: number,  title: string, text: string, subtitle: string, img: string}) => {
       let xsBanner = require('../assets/macBackground.jpeg');
       
     return (

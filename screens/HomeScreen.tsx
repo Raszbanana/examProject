@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, StyleSheet, Text, View, FlatList, TouchableHighlight } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../store/actions/user.actions';
 import Feed from  '../components/Feed';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../typings/navigations';
 import { useNavigation } from '@react-navigation/native';
+import { Post } from '../entities/Post';
+import { addPost, fetchPosts } from '../store/actions/post.actions';
 
 type ScreenNavigationType = NativeStackNavigationProp<
     StackParamList,
@@ -13,9 +15,26 @@ type ScreenNavigationType = NativeStackNavigationProp<
 >
  
 export default function HomeScreen() {
-
   const dispatch = useDispatch();
   const navigation = useNavigation<ScreenNavigationType>() 
+
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, []);
+
+  const posts: Post[] = useSelector(
+    (state: any) => state.post.posts
+    );
+    // console.log(posts)
+
+  const handleAddPost = () => { 
+    const post: Post = new Post('1', 'test', 'test', 'test', 'test,');
+    dispatch(addPost(post));
+  }
+
+  // handleAddPost()
+
   const renderItem = ({ item }: { item: any}) => (
     <TouchableHighlight
       activeOpacity={1}
@@ -27,7 +46,7 @@ export default function HomeScreen() {
       text: item.text,
       subtitle: item.subtitle
     })}}>
-       <Feed id={item.id} title={item.title} text={item.text} subtitle={item.subtitle} img={item.img}></Feed>
+       <Feed id={item.id} img={item.img} title={item.title} text={item.text} subtitle={item.subtitle} ></Feed>
     </TouchableHighlight>    
   );
     const DATA = [
@@ -90,8 +109,6 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
     },
     highlighter: {
-
-      
 
     }
 })

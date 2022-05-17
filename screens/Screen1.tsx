@@ -24,7 +24,6 @@ export default function Screen1() {
   const navigation = useNavigation<ScreenNavigationType>();
   const [title, onChangeTitle] = React.useState('');
 
-
   // const isHappy = useSelector((state: any) => state.chat.isHappy) // subscribe to redux store and select attribute (isHappy)
   const chatrooms: Chatroom[] = useSelector(
     (state: any) => state.chat.chatrooms
@@ -33,12 +32,6 @@ export default function Screen1() {
     const user: User= useSelector(
       (state: any) => state.user.loggedInUser
       );
-
-
-  
-
-
-
 
   // console.log("isHappy", isHappy);
   const dispatch = useDispatch();

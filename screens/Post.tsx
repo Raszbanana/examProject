@@ -15,8 +15,9 @@ const Post = ({
   title,
   text,
   subtitle,
+  image,
 }: {
-  id: number;
+  id: string;
   title: string;
   text: string;
   subtitle: string;
@@ -45,7 +46,6 @@ const Post = ({
               </View>
               <Card.Image style={{ padding: 0 }} source={banner} />
               <View style={styles.mainSection}>
-              <Text style={styles.text}></Text>
               <Text style={styles.text}>{route.params.text}</Text>
               <Text style={styles.id}>{route.params.id}</Text>
               <TouchableHighlight
@@ -82,7 +82,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black',
-
+    marginTop: 20,
+    marginLeft: '5%',
+    marginRight: '5%',
   },
   background: {
     height: '100%',
@@ -122,10 +124,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
   },
   mainSection: {
-    marginTop: 10,
-    borderRadius: 10,
-    width: '95%',
-    marginLeft: '2.5%',
+    // borderRadius: 10,
+    width: '100%',
+    // marginLeft: '2.5%',
     backgroundColor: 'white',
     minHeight: '80%'
   }
