@@ -23,9 +23,9 @@ export default function HomeScreen() {
     dispatch(fetchPosts());
   }, []);
 
-  const posts: Post[] = useSelector(
-    (state: any) => state.post.posts
-    );
+  // const posts: Post[] = useSelector(
+  //   (state: any) => state.post.posts
+  //   );
     // console.log(posts)
 
   const handleAddPost = () => { 

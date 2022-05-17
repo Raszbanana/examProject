@@ -29,9 +29,10 @@ export const fetchPosts = () => {
 
             // console.log("data from server", data);
             //chatroom.id = data.name;
-            console.log(posts)
-
+            // console.log(posts)
+           
             dispatch({ type: FETCH_POSTS, payload: posts })
+            console.log(getState())
         }
     };
 }
