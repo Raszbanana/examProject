@@ -2,6 +2,6 @@ import { Message } from "./Message";
 
 export class Chatroom {
     constructor(public title: string,
-        public message: Message[], public id: string) { }
+        public messages: Message[], public id: string) { }
 }
 

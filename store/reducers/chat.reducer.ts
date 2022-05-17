@@ -3,16 +3,10 @@ import { ADD_CHATROOM, FETCH_CHATROOMS } from "../actions/chat.actions";
 // import { TOGGLE_HAPPY } from "../actions/chat.actions";
 interface ReduxState {
     chatrooms: Chatroom[]
-    // isHappy: boolean
-    counter: number
-    name: string
 }
 
 const initialState: ReduxState = {
     chatrooms: [],
-    // isHappy: false,
-    counter: 0,
-    name: "Peter"
 }
 
 interface ReduxAction {
