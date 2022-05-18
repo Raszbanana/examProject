@@ -27,12 +27,20 @@ const Post = ({
   const test = () => {
     console.log('test');
   };
-  let banner = require('../assets/macBackground.jpeg');
+  let macBanner = require('../assets/macBackground.jpeg');
+  let reactBanner = require('../assets/reactLogo.png')
+  let banner = macBanner;
+
+  if(route.params.image == '2') {
+    banner = reactBanner;
+  } else if(route.params.image == '1') {
+    banner = macBanner;
+  }
 
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/macBackground.jpeg')}
+        source={banner}
         resizeMode='cover'
         style={styles.background}
       >
@@ -125,7 +133,7 @@ const styles = StyleSheet.create({
   mainSection: {
     width: '100%',
     backgroundColor: 'white',
-    minHeight: '80%'
+    minHeight: '50%'
   }
 });
 

@@ -39,11 +39,12 @@ export default function HomeScreen() {
       style={styles.highlighter}
       onPress={() => { navigation.navigate('Post', {
       id: item.id,
+      image: item.image,
       title: item.title, 
       text: item.text,
-      subtitle: item.subtitle
+      subtitle: item.subtitle,
     })}}>
-       <Feed id={item.id} img={item.img} title={item.title} text={item.text} subtitle={item.subtitle} ></Feed>
+       <Feed id={item.id} image={item.image} title={item.title} text={item.text} subtitle={item.subtitle} ></Feed>
     </TouchableHighlight>    
   );
     return (

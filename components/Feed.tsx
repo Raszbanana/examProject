@@ -1,13 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-const Feed = ({ id, title, text, subtitle, img }:
-    {id: number,  title: string, text: string, subtitle: string, img: string}) => {
-      let xsBanner = require('../assets/macBackground.jpeg');
+const Feed = ({ id, title, text, subtitle, image }:
+    {id: number,  title: string, text: string, subtitle: string, image: string}) => {
+      
+      let macBanner = require('../assets/macBackground.jpeg');
+      let reactBanner = require('../assets/reactLogo.png')
+      let banner = macBanner;
+
+      if(image == '2') {
+        banner = reactBanner;
+      } else if(image == '1') {
+        banner = macBanner;
+      }
 
     return (
         <View style={styles.container}>
-            <Image style={styles.xsBanner} source={xsBanner}></Image>
+            <Image style={styles.xsBanner} source={banner}></Image>
             <Text style={styles.id}>{id}</Text>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.subtitle}>{subtitle}</Text>
