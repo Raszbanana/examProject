@@ -66,26 +66,46 @@ const ChatroomScreen = ({ route }: any) => {
   }, []);
 
 
+  const today = new Date();
+
+
+  function getDate() {
+  return (today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' at '+today.getHours() + ":" + today.getMinutes()).toString();
+  }
+
+  function giveIdToMessage(){
+    let randomId = '7241330490';
+    let idExists = doesIdExist(mes,randomId);
+    while(idExists){
+      randomId = (Math.floor((Math.random() *10000000000)+1)).toString()
+      if(!doesIdExist(mes,randomId)){
+        idExists = false;
+      }
+    }
+    return randomId;
+    }
   
+  function doesIdExist(array: Message[], randomId: string){
+    let exists = false;
+    array.forEach((element) => {
+      if(element.messageId === randomId){
+        exists = true;
+      }
+  })
+  return exists;
+}
 
 
 
   
-
-  // fetch from database where id = route.params.id
-  // Every message in the chat should have a correlating userId
-  // If the id on a message id is not equal to the correlating users own id then the text should be left aligned if not,
-  // then the text should be right aligned
-  // assign chatroom attributes: title, status, message, timestamp, id,
-
   const sendMessage = () => {
     const _message = {
-      messageId: 'id',
+      messageId: giveIdToMessage(),
       userId: user.id,
-      name: 'Paweł',
+      name: user.email,
       status: Status.UNREAD,
       text: message,
-      timestamp: new Date().getUTCDate(),
+      timestamp: getDate(),
       isSending: false,
     };
     if(message != ''){
@@ -98,7 +118,7 @@ const ChatroomScreen = ({ route }: any) => {
       name={item.name}
       text={item.text}
       timestamp={item.timestamp}
-      id={item.id}
+      id={item.messageId}
       status={item.status}
       isSending={item.isSending}
     ></ChatMessage>
