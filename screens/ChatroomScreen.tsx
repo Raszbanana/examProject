@@ -1,5 +1,4 @@
 import { Chatroom } from '../entities/Chatroom';
-import { useRoute } from '@react-navigation/native';
 import {
   Button,
   FlatList,
@@ -34,17 +33,16 @@ const ChatroomScreen = ({ route }: any) => {
   const chatrooms: Chatroom[] = useSelector(
     (state: any) => (state.chat.chatrooms)
   );
+
   const mes: Message[] = useSelector(
     (state: any) => (state.message.messages)
   ); 
 
   const myChar: any = chatrooms.filter((chat) => chat.id === chatroomId);
   const messagesIntheChatroom: any[] = [];
-
   const myChatroom: Chatroom = myChar[0];
 
-
-   const messages: Message[] = [];
+  const messages: Message[] = [];
     mes.forEach((object) =>{
       messages.push({
       messageId: object.messageId,
@@ -64,19 +62,6 @@ const ChatroomScreen = ({ route }: any) => {
   useEffect(() => {
     dispatch(fetchMessages(myChatroom));
   }, []);
-
-
-  
-
-
-
-  
-
-  // fetch from database where id = route.params.id
-  // Every message in the chat should have a correlating userId
-  // If the id on a message id is not equal to the correlating users own id then the text should be left aligned if not,
-  // then the text should be right aligned
-  // assign chatroom attributes: title, status, message, timestamp, id,
 
   const sendMessage = () => {
     const _message = {
@@ -109,7 +94,6 @@ const ChatroomScreen = ({ route }: any) => {
       msg.isSending = true;
     }
   });
-
 
   return (
     <View style={styles.container}>

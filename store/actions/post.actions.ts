@@ -16,8 +16,7 @@ export const fetchPosts = () => {
         });
 
         if (!response.ok) {
-            //There was a problem..
-            //dispatch({type: FETCH_CHATROOM_FAILED, payload: 'something'})
+            console.log('Something went wrong' + await response)
         } else {
             const data = await response.json(); // json to javascript
             let posts: Post[] = []
@@ -27,12 +26,7 @@ export const fetchPosts = () => {
                 posts.push(new Post(key, obj.title, obj.text, obj.subtitle, obj.image))
             }
 
-            // console.log("data from server", data);
-            //chatroom.id = data.name;
-            // console.log(posts)
-           
             dispatch({ type: FETCH_POSTS, payload: posts })
-            // console.log(getState())
         }
     };
 }
@@ -40,7 +34,6 @@ export const fetchPosts = () => {
 export const addPost = (post: Post) => {
     return async (dispatch: any, getState: any) => {
         const token = getState().user.idToken;
-
         //delete chatroom.id // for an update, this would remove the id attribute (and value) from the chatroom
         const response = await fetch(
             'https://cbs-react-native-default-rtdb.europe-west1.firebasedatabase.app/posts.json?auth=' + token, {
@@ -54,12 +47,10 @@ export const addPost = (post: Post) => {
         });
         
         if (!response.ok) {
-            //There was a problem..
-            //dispatch({type: ADD_CHATROOM_FAILED, payload: 'something'})
+            console.log('Something went wrong' + await response)
         } else {
             const data = await response.json(); // json to javascript
-            // post.id = data.name;
-            // console.log(post)
+            
             dispatch({ type: ADD_POST, payload: post })
         }
     };

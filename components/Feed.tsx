@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 const Feed = ({ id, title, text, subtitle, img }:
     {id: number,  title: string, text: string, subtitle: string, img: string}) => {
       let xsBanner = require('../assets/macBackground.jpeg');
-      
+
     return (
         <View style={styles.container}>
             <Image style={styles.xsBanner} source={xsBanner}></Image>
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     marginLeft: '5%',
     marginBottom: 10,
     alignItems: 'center',
-    // justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -59,8 +58,6 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   xsBanner: {
-    // display: 'flex',
-    // position: 'relative',
     borderRadius: 5,
     height: '20%',
     width: '90%',

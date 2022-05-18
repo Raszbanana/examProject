@@ -33,8 +33,6 @@ export default function LoginScreen() {
     readPersistedUserInfo();
   }, []);
 
-
-
   return (
     <View style={styles.container}>
       <Text style={styles.login__text}>Login Screen</Text>
@@ -84,5 +82,4 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
   },
- 
 });

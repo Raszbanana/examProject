@@ -3,7 +3,6 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 const Input = ({ title, inputValue, error, setText }:
     { title: string, inputValue: string, error: string, setText: (i: string) => void }) => {
-
     const [entered, setEntered] = useState(false)
 
     const handleChangeText = (input: string) => {
@@ -24,8 +23,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
 })
 

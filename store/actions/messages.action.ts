@@ -18,7 +18,7 @@ export const FETCH_MESSAGES = 'FETCH_MESSAGES';
       });
 
         if (!response.ok) {
-             //There was a problem..
+            console.log('Something went wrong' + await response)
         } else {
             const data = await response.json(); // json to javascript
             let messages: Message[] = []
@@ -28,10 +28,6 @@ export const FETCH_MESSAGES = 'FETCH_MESSAGES';
                 console.log('obj', obj);
                 messages.push(new Message(obj.name, obj.status, obj.text, obj.timestamp, obj.messageId, obj.userId, obj.isSending))
             }
-
-            // console.log("data from server", data);
-            //chatroom.id = data.name;
-
             dispatch({ type: FETCH_MESSAGES, payload: messages })
         }
     };
@@ -40,7 +36,6 @@ export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const addMessage = (chatroomId: string, message: Message) => {
     return async (dispatch: any, getState: any) => {
            const token = getState().user.idToken;
-   
            //delete chatroom.id // for an update, this would remove the id attribute (and value) from the chatroom
            const response = await fetch(
                `https://cbs-react-native-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatroomId}/message.json?auth=` + token, {
@@ -52,11 +47,9 @@ export const addMessage = (chatroomId: string, message: Message) => {
                    message
                )
            });
-   
-           // console.log(await response.json());
-   
+
            if (!response.ok) {
-               //There was a problem..
+                console.log('Something went wrong' + await response)
            } else {
                const data = await response.json(); // json to javascript
                message.messageId = data.name;

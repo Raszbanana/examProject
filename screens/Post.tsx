@@ -123,9 +123,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
   },
   mainSection: {
-    // borderRadius: 10,
     width: '100%',
-    // marginLeft: '2.5%',
     backgroundColor: 'white',
     minHeight: '80%'
   }

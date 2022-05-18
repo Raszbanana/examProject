@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { rehydrateUser, signup } from '../store/actions/user.actions';
-
 import { StackParamList } from "../typings/navigations";
 
 type ScreenNavigationType = NativeStackNavigationProp<

@@ -68,7 +68,6 @@ export default function Screen1() {
     <View style={styles.container}>
       {/* <Text>{isHappy.toString()}</Text>
             <Button title="Toggle happy" onPress={() => dispatch(toggleHappy())} /> */}
-
       <FlatList
         data={chatrooms}
         renderItem={renderChatroom}
