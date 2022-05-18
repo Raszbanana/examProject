@@ -11,9 +11,7 @@ import EditProfileScreen from '../screens/EditProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SignupScreen from '../screens/SignupScreen';
-import Screen1 from './../screens/Screen1';
-import Screen2 from './../screens/Screen2';
-import Screen3 from './../screens/Screen3';
+import ChatHomeScreen from '../screens/ChatHomeScreen';
 import Post from './../screens/Post';
 import LoginScreen from './../screens/LoginScreen';
 import ChatroomScreen from '../screens/ChatroomScreen'
@@ -34,10 +32,8 @@ function ChatStackNavigator() {
         headerTintColor: 'black',
       }}
     >
-      <Stack.Screen name='Chats' component={Screen1} />
+      <Stack.Screen name='Chats' component={ChatHomeScreen} />
       <Stack.Screen name='ChatroomScreen' component={ChatroomScreen} />
-      <Stack.Screen name='Screen2' component={Screen2} />
-      <Stack.Screen name='Screen3' component={Screen3} />
     </Stack.Navigator>
   );
 }
