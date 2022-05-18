@@ -11,4 +11,5 @@ export type StackParamList = {
     Message: [{ text: string}];
     Home: undefined;
     Feed: undefined;
+    AddPost: undefined;
 }

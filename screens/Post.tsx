@@ -58,7 +58,6 @@ const Post = ({
               </TouchableHighlight>
               </View>
             </View>
-            {/* </Card> */}
           </View>
         </ScrollView>
       </ImageBackground>

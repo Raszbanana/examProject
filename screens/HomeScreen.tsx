@@ -17,10 +17,11 @@ type ScreenNavigationType = NativeStackNavigationProp<
 export default function HomeScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation<ScreenNavigationType>() 
-
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, []);
+  dispatch(fetchPosts());
+  
+  // useEffect(() => {
+  //   dispatch(fetchPosts());
+  // }, []);
 
   const posts: Post[] = useSelector(
     (state: any) => state.post.posts
@@ -52,6 +53,9 @@ export default function HomeScreen() {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />
+        <Button title='Add a post to the feed' onPress={() => {
+        navigation.navigate('AddPost');
+      }} />
         <Button title='Logout' onPress={() => dispatch(logout())} />
       </View>
     );
@@ -60,7 +64,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 40,
+        // paddingTop: 40,
         backgroundColor: '#fff',
         // alignItems: 'center',
         // justifyContent: 'center',

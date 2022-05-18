@@ -18,6 +18,7 @@ import Screen3 from './../screens/Screen3';
 import Post from './../screens/Post';
 import LoginScreen from './../screens/LoginScreen';
 import ChatroomScreen from '../screens/ChatroomScreen'
+import AddPost from '../screens/AddPostScreen';
 import { StackParamList } from './../typings/navigations';
 
 
@@ -52,6 +53,7 @@ function HomeStackNavigator() {
     }}>
       <Stack.Screen name='Feed' component={HomeScreen} />
       <Stack.Screen name='Post' component={Post} options={({ route }) => ({ title: route.params.title })} />
+      <Stack.Screen name='AddPost' component={AddPost} options={{title: "Add a post"}} />
     </Stack.Navigator>
   );
 }
