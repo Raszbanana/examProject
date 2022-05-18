@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, StyleSheet, Text, View, FlatList, TouchableHighlight } from 'react-native';
+import { Button, StyleSheet, Text, View, FlatList, TouchableHighlight, SafeAreaView, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../store/actions/user.actions';
 import Feed from  '../components/Feed';
@@ -18,22 +18,18 @@ export default function HomeScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation<ScreenNavigationType>() 
 
-
   useEffect(() => {
     dispatch(fetchPosts());
   }, []);
 
-  // const posts: Post[] = useSelector(
-  //   (state: any) => state.post.posts
-  //   );
-    // console.log(posts)
+  const posts: Post[] = useSelector(
+    (state: any) => state.post.posts
+    );
 
   const handleAddPost = () => { 
-    const post: Post = new Post('1', 'test', 'test', 'test', 'test,');
+    const post: Post = new Post('', 'test', 'test', 'test', 'test,');
     dispatch(addPost(post));
   }
-
-  // handleAddPost()
 
   const renderItem = ({ item }: { item: any}) => (
     <TouchableHighlight
@@ -49,54 +45,15 @@ export default function HomeScreen() {
        <Feed id={item.id} img={item.img} title={item.title} text={item.text} subtitle={item.subtitle} ></Feed>
     </TouchableHighlight>    
   );
-    const DATA = [
-        {
-          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-          img: 'banner1',
-          title: 'First Item',
-          subtitle: 'Wanna get to know items?',
-          text: `Hans hansen havde en bondegård iar i ar åh, og med den går han var en mand Hans hansen havde en bondegård iar i ar åh, og med den går han var en mand Hans hansen havde en bondegård iar i ar åh, og med den går han var en mand Hans hansen havde en bondegård iar i ar åh, og med den går han var en mand Hans hansen havde en bondegård iar i ar åh, og med den går han var en mand Hans hansen havde en bondegård iar i ar åh, og med den går han var en mand v Hans hansen havde en bondegård iar i ar åh, og med den går han var en mand`,
-        },
-        {
-          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-          img: 'banner2',
-          title: 'Second Item',
-          text: `This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, `
-        },
-        {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          img: 'banner1',
-          title: 'Third Item',
-          text: `This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, `
-        },
-        {
-          id: '53694a0f-3da1-471f-bd96-145571e29d72',
-          img: 'banner2',
-          title: 'Fourth Item',
-          text: `This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, `
-        },
-        {
-          id: '53624a0f-3da1-471f-bd96-145571e29d72',
-          img: 'banner1',
-          title: 'Fifth Item',
-          text: `This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, `
-        },
-        {
-          id: '53694a1f-3da1-471f-bd96-145571e29d72',
-          img: 'banner2',
-          title: 'Sixth Item',
-          text: `This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, This item is an item, unlike anything you have ever witnessed, `
-        }
-      ];
-
     return (
-        <View style={styles.container}>
-            <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}/>
-            <Button title="Logout" onPress={() => dispatch(logout())} />
-        </View> 
+      <View style={styles.container}>
+        <FlatList
+          data={posts}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+        <Button title='Logout' onPress={() => dispatch(logout())} />
+      </View>
     );
 }
 
@@ -110,5 +67,9 @@ const styles = StyleSheet.create({
     },
     highlighter: {
 
+    },
+    title: {
+      borderWidth: 1,
+      borderColor: 'red'
     }
 })

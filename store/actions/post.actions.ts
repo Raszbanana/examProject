@@ -32,7 +32,7 @@ export const fetchPosts = () => {
             // console.log(posts)
            
             dispatch({ type: FETCH_POSTS, payload: posts })
-            console.log(getState())
+            // console.log(getState())
         }
     };
 }

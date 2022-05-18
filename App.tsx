@@ -5,12 +5,13 @@ import ReduxThunk from 'redux-thunk';
 import Navigation from './components/Navigation';
 import chatReducer from './store/reducers/chat.reducer';
 import userReducer from './store/reducers/user.reducer';
+import postReducer from './store/reducers/post.reducer';
 
 
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
-  // posts: PostReducer
+  post: postReducer
 });
 export type RootState = ReturnType<typeof rootReducer>
 
