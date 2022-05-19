@@ -1,10 +1,11 @@
 import React from 'react';
 import { useRoute } from '@react-navigation/native';
-import { SafeAreaView, TextInput, Text, StyleSheet, Button } from 'react-native';
+import { SafeAreaView, TextInput, Text, StyleSheet, Button, View } from 'react-native';
 import { Card } from "@rneui/themed";
 import { useDispatch, useSelector } from 'react-redux';
 import { Post } from '../entities/Post';
 import { addPost } from '../store/actions/post.actions';
+import RNPickerSelect from 'react-native-picker-select';
 
 const AddPost = () => {
   const route = useRoute();
@@ -12,18 +13,20 @@ const AddPost = () => {
   const [title, onChangeTitle] = React.useState('');
   const [subtitle, onChangeSubtitle] = React.useState('');
   const [text, onChangeText] = React.useState('');
+  const [image, onChangeImage] = React.useState('');
 
   const posts: Post[] = useSelector(
     (state: any) => state.post.posts
     );
 
   const handleAddPost = () => { 
-    const post: Post = new Post('', title, text, subtitle, '');
+    const post: Post = new Post('', title, text, subtitle, image);
     console.log(post)
     dispatch(addPost(post));
     onChangeText('')
     onChangeSubtitle('')
     onChangeTitle('')
+
   }
 
   return (
@@ -56,6 +59,18 @@ const AddPost = () => {
         placeholder='The detailed text of your post'
         maxLength={450}
       />
+      <View>
+        <Text style={[styles.headers, styles.bannerSelect]}>Select a banner for your post</Text>
+        <View style={styles.selector}>
+      <RNPickerSelect
+            onValueChange={(value) => onChangeImage(value)}
+            items={[
+                { label: 'macLogo', value: '1', color: 'red' },
+                { label: 'reactLogo', value: '2',  color: 'blue' }
+            ]}
+        />
+        </View>
+      </View>
       <Button 
       title="AddPost" 
       onPress={handleAddPost}>Add Post!</Button>
@@ -83,6 +98,15 @@ const styles = StyleSheet.create({
     },
     text: {
       height: '55%',
+    },
+    selector: {
+      marginTop: 10,
+      marginBottom: 10,
+      marginLeft: '46%',
+      fontSize: 100,
+    },
+    bannerSelect: {
+      marginTop: 20,
     }
 })
 

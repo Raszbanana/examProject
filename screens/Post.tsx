@@ -49,7 +49,7 @@ const Post = ({
             <View style={styles.innerCard}>
               <View style={styles.subHeader_background}>
                 <Card.Title>
-                  <Text style={styles.subHeader}>A page about {route.params.title}</Text>
+                  <Text style={styles.subHeader}>{route.params.subtitle}</Text>
                 </Card.Title>
               </View>
               <Card.Image style={{ padding: 0 }} source={banner} />
