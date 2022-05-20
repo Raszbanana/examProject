@@ -1,34 +1,76 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
-const Feed = ({ id, title, text }:
-    {id: number,  title: string, text: string}) => {
+const Feed = ({ id, title, text, subtitle, image }:
+    {id: number,  title: string, text: string, subtitle: string, image: string}) => {
+      
+      let macBanner = require('../assets/macBackground.jpeg');
+      let reactBanner = require('../assets/reactLogo.png')
+      let banner = macBanner;
+
+      if(image == '2') {
+        banner = reactBanner;
+      } else if(image == '1') {
+        banner = macBanner;
+      }
 
     return (
         <View style={styles.container}>
+            <Image style={styles.xsBanner} source={banner}></Image>
             <Text style={styles.id}>{id}</Text>
-            <Text>{title}</Text>
-            <Text>{text}</Text>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.subtitle}>{subtitle}</Text>
+            <Text numberOfLines={3} style={styles.text}>{text}</Text>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        borderColor: '#000',
-        borderWidth: 1,
-        width: 300,
-        height: 100,
-        marginTop:10,
-        marginBottom:10,
-        // alignItems: 'center',
-        // justifyContent: 'center',
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderColor: '#000',
+    borderWidth: 0,
+    borderRadius: 30,
+    padding: 10,
+    height: 200,
+    maxWidth:'90%',
+    marginTop: 10,
+    marginLeft: '5%',
+    marginBottom: 10,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
     },
-    id: {
-     display: 'none',
-    },
-})
+    shadowOpacity: 0.53,
+    shadowRadius: 13.97,
+
+    elevation: 21,
+  },
+
+  id: {
+    display: 'none',
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'red'
+  },
+  text: {
+    marginTop: 10,
+  },
+  subtitle: {
+    color: '#000000',
+    marginTop: 5,
+    fontSize: 16
+  },
+  xsBanner: {
+    borderRadius: 5,
+    height: '20%',
+    width: '90%',
+  }
+});
 
 export default Feed;

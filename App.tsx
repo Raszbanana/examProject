@@ -4,13 +4,16 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import Navigation from './components/Navigation';
 import chatReducer from './store/reducers/chat.reducer';
+import messageReducer from './store/reducers/message.reducer';
 import userReducer from './store/reducers/user.reducer';
+import postReducer from './store/reducers/post.reducer';
 
 
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
-  // posts: PostReducer
+  post: postReducer,
+  message: messageReducer,
 });
 export type RootState = ReturnType<typeof rootReducer>
 

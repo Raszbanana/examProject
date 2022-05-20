@@ -1,18 +1,14 @@
-import { Chatroom } from "../../entities/Chatroom";
+import { Post } from '../../entities/Post'
 
-// export const TOGGLE_HAPPY = 'TOGGLE_HAPPY';
-export const ADD_CHATROOM = 'ADD_CHATROOM';
-export const FETCH_CHATROOMS = 'FETCH_CHATROOMS';
+export const ADD_POST = 'ADD_POST';
+export const FETCH_POSTS = 'FETCH_POSTS';
 
-// export const toggleHappy = () => {
-//     return { type: TOGGLE_HAPPY };
-// };
-
-export const fetchChatrooms = () => {
+export const fetchPosts = () => {
     return async (dispatch: any, getState: any) => {
         const token = getState().user.idToken;
+
         const response = await fetch(
-            'https://cbs-react-native-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth=' + token, {
+            'https://cbs-react-native-default-rtdb.europe-west1.firebasedatabase.app/posts.json?auth=' + token, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,41 +19,39 @@ export const fetchChatrooms = () => {
             console.log('Something went wrong' + await response)
         } else {
             const data = await response.json(); // json to javascript
-            let chatrooms: Chatroom[] = []
+            let posts: Post[] = []
             for (const key in data) {
                 // create Chatroom objects and push them into the array chatrooms.
                 const obj = data[key];
-                chatrooms.push(new Chatroom(obj.title, obj.message, key))
+                posts.push(new Post(key, obj.title, obj.text, obj.subtitle, obj.image))
             }
 
-            dispatch({ type: 'FETCH_CHATROOMS', payload: chatrooms })
+            dispatch({ type: FETCH_POSTS, payload: posts })
         }
     };
 }
 
-export const addChatroom = (chatroom: Chatroom) => {
+export const addPost = (post: Post) => {
     return async (dispatch: any, getState: any) => {
         const token = getState().user.idToken;
-
         //delete chatroom.id // for an update, this would remove the id attribute (and value) from the chatroom
         const response = await fetch(
-            'https://cbs-react-native-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth=' + token, {
+            'https://cbs-react-native-default-rtdb.europe-west1.firebasedatabase.app/posts.json?auth=' + token, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
-                chatroom
+                post
             )
         });
-
+        
         if (!response.ok) {
             console.log('Something went wrong' + await response)
         } else {
             const data = await response.json(); // json to javascript
-            chatroom.id = data.name;
-
-            dispatch({ type: ADD_CHATROOM, payload: chatroom })
+            
+            dispatch({ type: ADD_POST, payload: post })
         }
     };
 }
