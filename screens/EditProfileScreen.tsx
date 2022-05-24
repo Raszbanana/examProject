@@ -8,10 +8,10 @@ import { User } from '../entities/User';
 export default function EditProfileScreen() {
     const user: User = useSelector((state: RootState) => state.user.loggedInUser);
     const [textEmail, setTextEmail] = useState(user.email)
-    // console.log(user.email);
+    const [studyProgram, setStudyProgram] = useState('')
 
     const onSave = () => {
-        if (textEmail !== ''  /* && other inputs are not empty */) {
+        if (textEmail !== '') {
             // save the data to the server
         } else {
             //Show error message
@@ -20,16 +20,21 @@ export default function EditProfileScreen() {
 
     return (
         <View style={styles.container}>
-            <Text>Edit Profile Screen</Text>
-            <Input title="What is your email?"
+            <Text style={styles.titles}>Email</Text>
+            <View style={styles.borders}>
+            <Input title="Type new email"
                 inputValue={textEmail}
                 setText={setTextEmail}
-                error="Email cannot be empty"
+                error="Empty"
             />
-            {/* <Input title="Study programme"
-                inputValue=""
-                error="Study programme cannot be empty" /> */}
-
+            </View>
+            <Text style={styles.titles}>Study Program</Text>
+            <View style={styles.borders}>
+            <Input title="Choose new program"
+                inputValue={studyProgram}
+                setText={setStudyProgram}
+                error="Empty" />
+            </View>
             <Button title="Save" onPress={() => onSave()} />
         </View>
     );
@@ -42,4 +47,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    titles: {
+        fontSize: 20,
+        marginBottom: 20,
+    },
+    borders: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 0,
+        borderColor: 'black',
+        borderRadius: 10,
+        height: 100,
+        width: 200,
+    }
 })

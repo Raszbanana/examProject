@@ -63,7 +63,7 @@ function ProfileStackNavigator() {
       headerTintColor: 'purple',
     }}>
       <Stack.Screen name='Profile' component={ProfileScreen} />
-      <Stack.Screen name='EditProfile' component={EditProfileScreen} />
+      <Stack.Screen name='EditProfile' component={EditProfileScreen} options={{title: "Edit Profile"}} />
     </Stack.Navigator>
   );
 }

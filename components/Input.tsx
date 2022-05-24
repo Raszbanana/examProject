@@ -13,8 +13,8 @@ const Input = ({ title, inputValue, error, setText }:
     return (
         <View style={styles.container}>
             <Text>{title}</Text>
-            <TextInput value={inputValue} onChangeText={handleChangeText} onBlur={() => setEntered(true)} />
-            {inputValue === '' && entered ? <Text>{error}</Text> : <></>}
+            <TextInput value={inputValue} style={styles.border} onChangeText={handleChangeText} onBlur={() => setEntered(true)} />
+            {inputValue === '' && entered ? <Text style={styles.error}>{error}</Text> : <></>}
         </View>
     );
 }
@@ -24,6 +24,16 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    border: {
+        marginTop: 20,
+        borderRadius: 2,
+        borderWidth: 1,
+    },
+    error: {
+    marginTop: 5,
+    textAlign: 'center',
+    }
+    
 })
 
 export default Input;
