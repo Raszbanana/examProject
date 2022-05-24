@@ -1,32 +1,30 @@
 import { Post } from '../../entities/Post';
-import { ADD_POST, FETCH_POSTS } from '../actions/post.actions'
+import { ADD_POST, FETCH_POSTS } from '../actions/post.actions';
 
 interface ReduxState {
-    posts: Post[]
+  posts: Post[];
 }
 
 const initialState: ReduxState = {
-    posts: [],
-}
+  posts: [],
+};
 
 interface ReduxAction {
-    type: string,
-    payload?: boolean | number | string | Post
+  type: string;
+  payload?: boolean | number | string | Post;
 }
 
 const postReducer = (state: ReduxState = initialState, action: ReduxAction) => {
-    switch (action.type) {
-        case ADD_POST:
+  switch (action.type) {
+    case ADD_POST:
+      return { ...state };
 
-            return { ...state }
+    case FETCH_POSTS:
+      return { ...state, posts: action.payload };
 
-        case FETCH_POSTS:
-
-            return { ...state, posts: action.payload }
-
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 
 export default postReducer;

@@ -1,7 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {
-  NavigationContainer,
-} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
@@ -14,10 +12,9 @@ import SignupScreen from '../screens/SignupScreen';
 import ChatHomeScreen from '../screens/ChatHomeScreen';
 import Post from './../screens/Post';
 import LoginScreen from './../screens/LoginScreen';
-import ChatroomScreen from '../screens/ChatroomScreen'
+import ChatroomScreen from '../screens/ChatroomScreen';
 import AddPost from '../screens/AddPostScreen';
 import { StackParamList } from './../typings/navigations';
-
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Tab = createBottomTabNavigator();
@@ -40,15 +37,24 @@ function ChatStackNavigator() {
 function HomeStackNavigator() {
   return (
     <Stack.Navigator
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: 'white',
-      },
-      headerTintColor: 'purple',
-    }}>
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: 'white',
+        },
+        headerTintColor: 'purple',
+      }}
+    >
       <Stack.Screen name='Feed' component={HomeScreen} />
-      <Stack.Screen name='Post' component={Post} options={({ route }) => ({ title: route.params.title })} />
-      <Stack.Screen name='AddPost' component={AddPost} options={{title: "Add a post"}} />
+      <Stack.Screen
+        name='Post'
+        component={Post}
+        options={({ route }) => ({ title: route.params.title })}
+      />
+      <Stack.Screen
+        name='AddPost'
+        component={AddPost}
+        options={{ title: 'Add a post' }}
+      />
     </Stack.Navigator>
   );
 }
@@ -56,14 +62,19 @@ function HomeStackNavigator() {
 function ProfileStackNavigator() {
   return (
     <Stack.Navigator
-        screenOptions={{
-      headerStyle: {
-        backgroundColor: 'white',
-      },
-      headerTintColor: 'purple',
-    }}>
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: 'white',
+        },
+        headerTintColor: 'purple',
+      }}
+    >
       <Stack.Screen name='Profile' component={ProfileScreen} />
-      <Stack.Screen name='EditProfile' component={EditProfileScreen} options={{title: "Edit Profile"}} />
+      <Stack.Screen
+        name='EditProfile'
+        component={EditProfileScreen}
+        options={{ title: 'Edit Profile' }}
+      />
     </Stack.Navigator>
   );
 }

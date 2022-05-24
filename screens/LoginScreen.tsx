@@ -36,12 +36,19 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.login__text}>Login Screen</Text>
-      <TextInput style={styles.input} value={email} placeholder='email'  placeholderTextColor="#000" onChangeText={setEmail} />
-      <TextInput style={styles.input}
+      <TextInput
+        style={styles.input}
+        value={email}
+        placeholder='email'
+        placeholderTextColor='#000'
+        onChangeText={setEmail}
+      />
+      <TextInput
+        style={styles.input}
         value={password}
         placeholder='password'
         onChangeText={setPassword}
-        placeholderTextColor="#000" 
+        placeholderTextColor='#000'
       />
       <Button title='Login' onPress={() => dispatch(login(email, password))} />
       <Text style={styles.signup_text}>

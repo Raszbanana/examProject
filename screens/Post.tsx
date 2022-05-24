@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { Card } from "@rneui/themed";
+import { Card } from '@rneui/themed';
 
 const Post = ({
   id,
@@ -28,13 +28,13 @@ const Post = ({
     console.log('test');
   };
   let macBanner = require('../assets/macBackground.jpeg');
-  let reactBanner = require('../assets/reactLogo.png')
-  let keaBanner = require('../assets/kea_logo.jpg')
+  let reactBanner = require('../assets/reactLogo.png');
+  let keaBanner = require('../assets/kea_logo.jpg');
   let banner = keaBanner;
 
-  if(route.params.image == '2') {
+  if (route.params.image == '2') {
     banner = reactBanner;
-  } else if(route.params.image == '1') {
+  } else if (route.params.image == '1') {
     banner = macBanner;
   } else if (route.params.image == '3') {
     banner = keaBanner;
@@ -57,30 +57,36 @@ const Post = ({
               </View>
               <Card.Image style={{ padding: 0 }} source={banner} />
               <View style={styles.mainSection}>
-              <Text style={styles.text}>{route.params.text}</Text>
-              <Text style={styles.id}>{route.params.id}</Text>
-              <View style={{flexDirection:"row", justifyContent: "center"}}>
-              <TouchableHighlight
-                activeOpacity={0.8}
-                underlayColor='rgb(179, 255, 224)'
-                style={styles.touch}
-                onPress={test}
-              >
-                <Text style={[styles.likeButton, styles.button]}>Like this post</Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                activeOpacity={0.8}
-                underlayColor='rgb(255, 179, 179)'
-                style={styles.touch}
-                onPress={test}
-              >
-                <Text style={[styles.dislikeButton, styles.button]}>Dislike this post</Text>
-              </TouchableHighlight>
-              </View>
-              <View style={styles.likes}>
-              <Text>Likes: 230 </Text>
-              <Text>Dislikes: 493</Text>
-              </View>
+                <Text style={styles.text}>{route.params.text}</Text>
+                <Text style={styles.id}>{route.params.id}</Text>
+                <View
+                  style={{ flexDirection: 'row', justifyContent: 'center' }}
+                >
+                  <TouchableHighlight
+                    activeOpacity={0.8}
+                    underlayColor='rgb(179, 255, 224)'
+                    style={styles.touch}
+                    onPress={test}
+                  >
+                    <Text style={[styles.likeButton, styles.button]}>
+                      Like this post
+                    </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    activeOpacity={0.8}
+                    underlayColor='rgb(255, 179, 179)'
+                    style={styles.touch}
+                    onPress={test}
+                  >
+                    <Text style={[styles.dislikeButton, styles.button]}>
+                      Dislike this post
+                    </Text>
+                  </TouchableHighlight>
+                </View>
+                <View style={styles.likes}>
+                  <Text>Likes: 230 </Text>
+                  <Text>Dislikes: 493</Text>
+                </View>
               </View>
             </View>
           </View>
@@ -113,22 +119,21 @@ const styles = StyleSheet.create({
   background: {
     height: '100%',
     width: '100%',
-    opacity: 1
+    opacity: 1,
   },
   button: {
     // backgroundColor: '#32305A',
     textAlign: 'center',
     width: 60,
-
   },
   dislikeButton: {
-    color: 'red'
+    color: 'red',
   },
   likeButton: {
-    color: 'green'
+    color: 'green',
   },
   scroll: {
-    backgroundColor: '#00000050'
+    backgroundColor: '#00000050',
   },
   card: {
     minHeight: '95%',
@@ -152,12 +157,12 @@ const styles = StyleSheet.create({
   subHeader_background: {
     justifyContent: 'center',
     backgroundColor: '#32305A',
-    height: 60
+    height: 60,
   },
   mainSection: {
     width: '100%',
     backgroundColor: 'white',
-    minHeight: '50%'
+    minHeight: '50%',
   },
   touch: {
     marginLeft: 10,
@@ -168,12 +173,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   likes: {
-    flexDirection:"row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
     margin: 20,
     paddingLeft: 20,
     paddingRight: 20,
-  }
+  },
 });
 
 export default Post;

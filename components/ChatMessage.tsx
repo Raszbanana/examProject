@@ -8,21 +8,28 @@ const ChatMessage = ({
   timestamp,
   id,
   status,
-  isSending
+  isSending,
 }: {
   name: string;
   text: string;
   timestamp: number;
   id: string;
   status: Status;
-  isSending: boolean,
+  isSending: boolean;
 }) => {
   return (
-      <View style={[(isSending) ? styles.container__sending : styles.container__receiving, styles.container]}>
+    <View
+      style={[
+        isSending ? styles.container__sending : styles.container__receiving,
+        styles.container,
+      ]}
+    >
       <Text style={styles.id}>{id}</Text>
       <Text style={styles.message__info}>{name}</Text>
-      <View style={[(isSending) ? styles.sending : styles.receiving, styles.message]}>
-      <Text>{text}</Text>
+      <View
+        style={[isSending ? styles.sending : styles.receiving, styles.message]}
+      >
+        <Text>{text}</Text>
       </View>
       <Text style={styles.message__info}>{timestamp}</Text>
     </View>

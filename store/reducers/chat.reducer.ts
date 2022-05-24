@@ -1,37 +1,37 @@
-import { Chatroom } from "../../entities/Chatroom";
-import { ADD_CHATROOM, FETCH_CHATROOMS } from "../actions/chat.actions";
+import { Chatroom } from '../../entities/Chatroom';
+import { ADD_CHATROOM, FETCH_CHATROOMS } from '../actions/chat.actions';
 // import { TOGGLE_HAPPY } from "../actions/chat.actions";
 interface ReduxState {
-    chatrooms: Chatroom[]
+  chatrooms: Chatroom[];
 }
 
 const initialState: ReduxState = {
-    chatrooms: [],
-}
+  chatrooms: [],
+};
 
 interface ReduxAction {
-    type: string,
-    payload?: boolean | number | string | Chatroom
+  type: string;
+  payload?: boolean | number | string | Chatroom;
 }
 
 const chatReducer = (state: ReduxState = initialState, action: ReduxAction) => {
-    switch (action.type) {
-        // case TOGGLE_HAPPY:
-        //     console.log("hi");
+  switch (action.type) {
+    // case TOGGLE_HAPPY:
+    //     console.log("hi");
 
-        //     return { ...state, isHappy: !state.isHappy }
+    //     return { ...state, isHappy: !state.isHappy }
 
-       case ADD_CHATROOM:
-            return { ...state, chatrooms: [...state.chatrooms, action.payload] }
-        // state.chatrooms.push(chatroom) // mutating state. Not allowed */
+    case ADD_CHATROOM:
+      return { ...state, chatrooms: [...state.chatrooms, action.payload] };
+    // state.chatrooms.push(chatroom) // mutating state. Not allowed */
 
-        case FETCH_CHATROOMS:
-            // create a new state object with the action.payload assigned to the chatrooms array.
-            return { ...state, chatrooms: action.payload }
+    case FETCH_CHATROOMS:
+      // create a new state object with the action.payload assigned to the chatrooms array.
+      return { ...state, chatrooms: action.payload };
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 
 export default chatReducer;

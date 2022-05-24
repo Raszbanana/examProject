@@ -14,7 +14,7 @@ import React, { useEffect } from 'react';
 import ChatMessage from '../components/ChatMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { User } from '../entities/User';
-import { addMessage, fetchMessages} from '../store/actions/messages.action'
+import { addMessage, fetchMessages } from '../store/actions/messages.action';
 import { fetchChatrooms } from '../store/actions/chat.actions';
 
 type ScreenNavigationType = NativeStackNavigationProp<
@@ -31,20 +31,18 @@ const ChatroomScreen = ({ route }: any) => {
 
   const user: User = useSelector((state: any) => state.user.loggedInUser);
   const chatrooms: Chatroom[] = useSelector(
-    (state: any) => (state.chat.chatrooms)
+    (state: any) => state.chat.chatrooms
   );
 
-  const mes: Message[] = useSelector(
-    (state: any) => (state.message.messages)
-  ); 
+  const mes: Message[] = useSelector((state: any) => state.message.messages);
 
   const myChar: any = chatrooms.filter((chat) => chat.id === chatroomId);
   const messagesIntheChatroom: any[] = [];
   const myChatroom: Chatroom = myChar[0];
 
   const messages: Message[] = [];
-    mes.forEach((object) =>{
-      messages.push({
+  mes.forEach((object) => {
+    messages.push({
       messageId: object.messageId,
       userId: object.userId,
       name: object.name,
@@ -52,50 +50,55 @@ const ChatroomScreen = ({ route }: any) => {
       text: object.text,
       timestamp: object.timestamp,
       isSending: object.isSending,
-      })
-    })
+    });
+  });
 
   useEffect(() => {
     dispatch(fetchChatrooms());
-  }, []); 
-  
+  }, []);
+
   useEffect(() => {
     dispatch(fetchMessages(myChatroom));
   }, []);
 
-
   const today = new Date();
 
-
   function getDate() {
-  return (today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' at '+today.getHours() + ":" + today.getMinutes()).toString();
+    return (
+      today.getFullYear() +
+      '-' +
+      (today.getMonth() + 1) +
+      '-' +
+      today.getDate() +
+      ' at ' +
+      today.getHours() +
+      ':' +
+      today.getMinutes()
+    ).toString();
   }
 
-  function giveIdToMessage(){
+  function giveIdToMessage() {
     let randomId = '7241330490';
-    let idExists = doesIdExist(mes,randomId);
-    while(idExists){
-      randomId = (Math.floor((Math.random() *10000000000)+1)).toString()
-      if(!doesIdExist(mes,randomId)){
+    let idExists = doesIdExist(mes, randomId);
+    while (idExists) {
+      randomId = Math.floor(Math.random() * 10000000000 + 1).toString();
+      if (!doesIdExist(mes, randomId)) {
         idExists = false;
       }
     }
     return randomId;
-    }
-  
-  function doesIdExist(array: Message[], randomId: string){
+  }
+
+  function doesIdExist(array: Message[], randomId: string) {
     let exists = false;
     array.forEach((element) => {
-      if(element.messageId === randomId){
+      if (element.messageId === randomId) {
         exists = true;
       }
-  })
-  return exists;
-}
+    });
+    return exists;
+  }
 
-
-
-  
   const sendMessage = () => {
     const _message = {
       messageId: giveIdToMessage(),
@@ -106,8 +109,8 @@ const ChatroomScreen = ({ route }: any) => {
       timestamp: getDate(),
       isSending: false,
     };
-    if(message != ''){
-    dispatch(addMessage(chatroomId, _message));
+    if (message != '') {
+      dispatch(addMessage(chatroomId, _message));
     }
   };
 
@@ -131,11 +134,13 @@ const ChatroomScreen = ({ route }: any) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{myChatroom.title}</Text>
-      { <FlatList
-        data={messages}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.messageId}
-      />}
+      {
+        <FlatList
+          data={messages}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.messageId}
+        />
+      }
       <View style={styles.messageInput}>
         <TextInput
           style={styles.input}
