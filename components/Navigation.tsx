@@ -27,9 +27,9 @@ function ChatStackNavigator() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: 'yellow',
+          backgroundColor: 'white',
         },
-        headerTintColor: 'black',
+        headerTintColor: 'purple',
       }}
     >
       <Stack.Screen name='Chats' component={ChatHomeScreen} />
@@ -42,9 +42,9 @@ function HomeStackNavigator() {
     <Stack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#fefcff',
+        backgroundColor: 'white',
       },
-      headerTintColor: 'red',
+      headerTintColor: 'purple',
     }}>
       <Stack.Screen name='Feed' component={HomeScreen} />
       <Stack.Screen name='Post' component={Post} options={({ route }) => ({ title: route.params.title })} />
@@ -58,9 +58,9 @@ function ProfileStackNavigator() {
     <Stack.Navigator
         screenOptions={{
       headerStyle: {
-        backgroundColor: '#93edf7',
+        backgroundColor: 'white',
       },
-      headerTintColor: 'black',
+      headerTintColor: 'purple',
     }}>
       <Stack.Screen name='Profile' component={ProfileScreen} />
       <Stack.Screen name='EditProfile' component={EditProfileScreen} />

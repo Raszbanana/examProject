@@ -1,17 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-const Feed = ({ id, title, text, subtitle, image }:
-    {id: number,  title: string, text: string, subtitle: string, image: string}) => {
+const Feed = ({ id, title, text, image }:
+    {id: number,  title: string, text: string, image: string}) => {
       
       let macBanner = require('../assets/macBackground.jpeg');
       let reactBanner = require('../assets/reactLogo.png')
+      let keaBanner = require('../assets/kea_logo.jpg')
       let banner = macBanner;
 
       if(image == '2') {
         banner = reactBanner;
       } else if(image == '1') {
         banner = macBanner;
+      } else if (image == '3') {
+        banner = keaBanner;
       }
 
     return (
@@ -19,7 +22,6 @@ const Feed = ({ id, title, text, subtitle, image }:
             <Image style={styles.xsBanner} source={banner}></Image>
             <Text style={styles.id}>{id}</Text>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subtitle}>{subtitle}</Text>
             <Text numberOfLines={3} style={styles.text}>{text}</Text>
         </View>
     );
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderColor: '#000',
     borderWidth: 0,
-    borderRadius: 30,
+    borderRadius: 10,
     padding: 10,
     height: 200,
     maxWidth:'90%',
@@ -54,9 +56,10 @@ const styles = StyleSheet.create({
     display: 'none',
   },
   title: {
+    marginTop: 20,
     fontWeight: 'bold',
     fontSize: 20,
-    color: 'red'
+    color: '#32305A'
   },
   text: {
     marginTop: 10,

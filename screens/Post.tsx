@@ -29,12 +29,15 @@ const Post = ({
   };
   let macBanner = require('../assets/macBackground.jpeg');
   let reactBanner = require('../assets/reactLogo.png')
-  let banner = macBanner;
+  let keaBanner = require('../assets/kea_logo.jpg')
+  let banner = keaBanner;
 
   if(route.params.image == '2') {
     banner = reactBanner;
   } else if(route.params.image == '1') {
     banner = macBanner;
+  } else if (route.params.image == '3') {
+    banner = keaBanner;
   }
 
   return (
@@ -56,14 +59,28 @@ const Post = ({
               <View style={styles.mainSection}>
               <Text style={styles.text}>{route.params.text}</Text>
               <Text style={styles.id}>{route.params.id}</Text>
+              <View style={{flexDirection:"row", justifyContent: "center"}}>
               <TouchableHighlight
                 activeOpacity={0.8}
-                underlayColor='red'
-                style={styles.button}
+                underlayColor='rgb(179, 255, 224)'
+                style={styles.touch}
                 onPress={test}
               >
-                <Text style={styles.button}>Press me!</Text>
+                <Text style={[styles.likeButton, styles.button]}>Like this post</Text>
               </TouchableHighlight>
+              <TouchableHighlight
+                activeOpacity={0.8}
+                underlayColor='rgb(255, 179, 179)'
+                style={styles.touch}
+                onPress={test}
+              >
+                <Text style={[styles.dislikeButton, styles.button]}>Dislike this post</Text>
+              </TouchableHighlight>
+              </View>
+              <View style={styles.likes}>
+              <Text>Likes: 230 </Text>
+              <Text>Dislikes: 493</Text>
+              </View>
               </View>
             </View>
           </View>
@@ -99,11 +116,16 @@ const styles = StyleSheet.create({
     opacity: 1
   },
   button: {
-    color: 'black',
+    // backgroundColor: '#32305A',
     textAlign: 'center',
     width: 60,
-    borderWidth: 0.5,
-    borderRadius: 10,
+
+  },
+  dislikeButton: {
+    color: 'red'
+  },
+  likeButton: {
+    color: 'green'
   },
   scroll: {
     backgroundColor: '#00000050'
@@ -128,12 +150,29 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   subHeader_background: {
-    backgroundColor: 'black'
+    justifyContent: 'center',
+    backgroundColor: '#32305A',
+    height: 60
   },
   mainSection: {
     width: '100%',
     backgroundColor: 'white',
     minHeight: '50%'
+  },
+  touch: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 30,
+    color: 'black',
+    textAlign: 'center',
+    borderRadius: 10,
+  },
+  likes: {
+    flexDirection:"row",
+    justifyContent: "center",
+    margin: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
   }
 });
 

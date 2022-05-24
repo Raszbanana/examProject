@@ -17,20 +17,15 @@ type ScreenNavigationType = NativeStackNavigationProp<
 export default function HomeScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation<ScreenNavigationType>() 
-  dispatch(fetchPosts());
+  // dispatch(fetchPosts());
   
-  // useEffect(() => {
-  //   dispatch(fetchPosts());
-  // }, []);
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, []);
 
   const posts: Post[] = useSelector(
     (state: any) => state.post.posts
     );
-
-  const handleAddPost = () => { 
-    const post: Post = new Post('', 'test', 'test', 'test', 'test,');
-    dispatch(addPost(post));
-  }
 
   const renderItem = ({ item }: { item: any}) => (
     <TouchableHighlight
@@ -44,7 +39,7 @@ export default function HomeScreen() {
       text: item.text,
       subtitle: item.subtitle,
     })}}>
-       <Feed id={item.id} image={item.image} title={item.title} text={item.text} subtitle={item.subtitle} ></Feed>
+       <Feed id={item.id} image={item.image} title={item.title} text={item.text} ></Feed>
     </TouchableHighlight>    
   );
     return (
