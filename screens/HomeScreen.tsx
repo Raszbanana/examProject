@@ -2,12 +2,9 @@ import React, { useEffect } from 'react';
 import {
   Button,
   StyleSheet,
-  Text,
   View,
   FlatList,
   TouchableHighlight,
-  SafeAreaView,
-  TextInput,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../store/actions/user.actions';
@@ -16,18 +13,18 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../typings/navigations';
 import { useNavigation } from '@react-navigation/native';
 import { Post } from '../entities/Post';
-import { addPost, fetchPosts } from '../store/actions/post.actions';
+import { fetchPosts } from '../store/actions/post.actions';
 
 type ScreenNavigationType = NativeStackNavigationProp<StackParamList, 'Post'>;
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation<ScreenNavigationType>();
-  // dispatch(fetchPosts());
+  dispatch(fetchPosts());
 
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchPosts());
+  // }, []);
 
   const posts: Post[] = useSelector((state: any) => state.post.posts);
 

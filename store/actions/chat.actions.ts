@@ -1,12 +1,7 @@
 import { Chatroom } from '../../entities/Chatroom';
 
-// export const TOGGLE_HAPPY = 'TOGGLE_HAPPY';
 export const ADD_CHATROOM = 'ADD_CHATROOM';
 export const FETCH_CHATROOMS = 'FETCH_CHATROOMS';
-
-// export const toggleHappy = () => {
-//     return { type: TOGGLE_HAPPY };
-// };
 
 export const fetchChatrooms = () => {
   return async (dispatch: any, getState: any) => {
@@ -60,6 +55,7 @@ export const addChatroom = (chatroom: Chatroom) => {
     } else {
       const data = await response.json(); // json to javascript
       chatroom.id = data.name;
+      
 
       dispatch({ type: ADD_CHATROOM, payload: chatroom });
     }

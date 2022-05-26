@@ -26,7 +26,6 @@ const AddPost = () => {
 
   const handleAddPost = () => {
     const post: Post = new Post('', title, text, subtitle, image);
-    console.log(post);
     dispatch(addPost(post));
     onChangeText('');
     onChangeSubtitle('');

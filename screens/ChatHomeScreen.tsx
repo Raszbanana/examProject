@@ -12,10 +12,9 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Chatroom } from '../entities/Chatroom';
-import { Message, Status } from '../entities/Message';
+import { Message } from '../entities/Message';
 import { User } from '../entities/User';
 import { addChatroom, fetchChatrooms } from '../store/actions/chat.actions';
-// import { toggleHappy } from '../store/actions/chat.actions';
 import { StackParamList } from '../typings/navigations';
 
 type ScreenNavigationType = NativeStackNavigationProp<StackParamList, 'Chats'>;
@@ -24,7 +23,6 @@ export default function Screen1() {
   const navigation = useNavigation<ScreenNavigationType>();
   const [title, onChangeTitle] = React.useState('');
 
-  // const isHappy = useSelector((state: any) => state.chat.isHappy) // subscribe to redux store and select attribute (isHappy)
   const chatrooms: Chatroom[] = useSelector(
     (state: any) => state.chat.chatrooms
     );
@@ -33,7 +31,6 @@ export default function Screen1() {
       (state: any) => state.user.loggedInUser
       );
 
-  // console.log("isHappy", isHappy);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,8 +63,6 @@ export default function Screen1() {
 
   return (
     <View style={styles.container}>
-      {/* <Text>{isHappy.toString()}</Text>
-            <Button title="Toggle happy" onPress={() => dispatch(toggleHappy())} /> */}
       <FlatList
         data={chatrooms}
         renderItem={renderChatroom}

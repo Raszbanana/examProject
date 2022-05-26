@@ -16,10 +16,6 @@ interface ReduxAction {
 
 const chatReducer = (state: ReduxState = initialState, action: ReduxAction) => {
   switch (action.type) {
-    // case TOGGLE_HAPPY:
-    //     console.log("hi");
-
-    //     return { ...state, isHappy: !state.isHappy }
 
     case ADD_CHATROOM:
       return { ...state, chatrooms: [...state.chatrooms, action.payload] };
